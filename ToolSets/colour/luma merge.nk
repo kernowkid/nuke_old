@@ -1,0 +1,264 @@
+set cut_paste_input [stack 0]
+version 10.0 v4
+BackdropNode {
+ inputs 0
+ name BackdropNode6
+ tile_color 0x2e2d3fff
+ label "Luma Merge"
+ note_font_size 42
+ note_font_color 0xfefefeff
+ selected true
+ xpos -1864
+ ypos 1274
+ bdwidth 847
+ bdheight 797
+}
+push $cut_paste_input
+Dot {
+ name Dot62
+ label "Apply To"
+ note_font_size 20
+ note_font_color 0xfefefeff
+ selected true
+ xpos -1651
+ ypos 1354
+}
+Colorspace {
+ colorspace_out YCbCr
+ name Colorspace2
+ selected true
+ xpos -1685
+ ypos 1459
+}
+Dot {
+ name Dot63
+ selected true
+ xpos -1651
+ ypos 1529
+}
+Dot {
+ name Dot64
+ selected true
+ xpos -1651
+ ypos 1581
+}
+set N7f705800 [stack 0]
+Dot {
+ name Dot65
+ selected true
+ xpos -1820
+ ypos 1581
+}
+Shuffle {
+ red blue
+ green blue
+ alpha blue
+ name blue1
+ tile_color 0x1f00ffff
+ label "\[value in] | \[value in2]"
+ selected true
+ xpos -1854
+ ypos 1636
+}
+Dot {
+ name Dot66
+ selected true
+ xpos -1820
+ ypos 1847
+}
+push $N7f705800
+Shuffle {
+ red green
+ blue green
+ alpha green
+ name green1
+ tile_color 0x1fff00ff
+ label "\[value in] | \[value in2]"
+ selected true
+ xpos -1685
+ ypos 1635
+}
+push 0
+Dot {
+ name Dot61
+ label "Copy From"
+ note_font_size 20
+ note_font_color 0xfefefeff
+ selected true
+ xpos -1178
+ ypos 1364
+}
+Colorspace {
+ colorspace_out YCbCr
+ name Colorspace1
+ selected true
+ xpos -1212
+ ypos 1465
+}
+Dot {
+ name Dot33
+ selected true
+ xpos -1178
+ ypos 1539
+}
+Dot {
+ name Dot55
+ selected true
+ xpos -1178
+ ypos 1591
+}
+set N628d2400 [stack 0]
+Dot {
+ name Dot58
+ selected true
+ xpos -1295
+ ypos 1591
+}
+Shuffle {
+ green red
+ blue red
+ alpha red
+ name red
+ tile_color 0xff0000ff
+ label "\[value in] | \[value in2]"
+ selected true
+ xpos -1329
+ ypos 1645
+}
+Dot {
+ name Dot57
+ selected true
+ xpos -1295
+ ypos 1733
+}
+push $N7f705800
+Dot {
+ name Dot67
+ selected true
+ xpos -1392
+ ypos 1581
+}
+Shuffle {
+ green red
+ blue red
+ alpha red
+ name red1
+ tile_color 0xff0000ff
+ label "\[value in] | \[value in2]"
+ selected true
+ xpos -1426
+ ypos 1638
+}
+Merge2 {
+ inputs 2
+ operation min
+ name Merge12
+ selected true
+ xpos -1426
+ ypos 1729
+}
+Dot {
+ name Dot68
+ selected true
+ xpos -1392
+ ypos 1847
+}
+Group {
+ inputs 3
+ name RGB_Complier1
+ selected true
+ xpos -1685
+ ypos 1843
+ addUserKnob {20 title l "RGB Comp"}
+}
+ Input {
+  inputs 0
+  name r
+  xpos -90
+  ypos -186
+ }
+ Dot {
+  name Dot1
+  xpos -56
+  ypos -38
+ }
+ Input {
+  inputs 0
+  name g
+  xpos 20
+  ypos -186
+  number 1
+ }
+ ShuffleCopy {
+  inputs 2
+  red red
+  blue black
+  name ShuffleCopy1
+  label "\[value in] | \[value in2]"
+  xpos 20
+  ypos -48
+ }
+ Input {
+  inputs 0
+  name b
+  xpos 130
+  ypos -186
+  number 2
+ }
+ ShuffleCopy {
+  inputs 2
+  red red
+  green green
+  name ShuffleCopy2
+  label "\[value in] | \[value in2]"
+  xpos 130
+  ypos -48
+ }
+ Output {
+  name rgb
+  xpos 130
+  ypos 30
+ }
+ Output {
+  name Output1
+  xpos 130
+  ypos 130
+ }
+end_group
+Colorspace {
+ colorspace_in YCbCr
+ name Colorspace3
+ selected true
+ xpos -1685
+ ypos 2041
+}
+push $N628d2400
+Dot {
+ name Dot56
+ selected true
+ xpos -1073
+ ypos 1591
+}
+Shuffle {
+ red blue
+ green blue
+ alpha blue
+ name blue
+ tile_color 0x1f00ffff
+ label "\[value in] | \[value in2]"
+ selected true
+ xpos -1107
+ ypos 1646
+}
+push $N628d2400
+Shuffle {
+ red green
+ blue green
+ alpha green
+ name green
+ tile_color 0x1fff00ff
+ label "\[value in] | \[value in2]"
+ selected true
+ xpos -1212
+ ypos 1647
+}

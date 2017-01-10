@@ -1,0 +1,82 @@
+set cut_paste_input [stack 0]
+version 10.0 v4
+push $cut_paste_input
+Group {
+ name edgeMatte1
+ selected true
+ xpos 738
+ ypos 517
+ postage_stamp_frame 1017
+ addUserKnob {20 User}
+ addUserKnob {41 size l "Expand in" T Blur31.size}
+ addUserKnob {41 size_1 l "Expand out" T Blur32.size}
+ addUserKnob {41 multiply l Mult T Grade1.multiply}
+ addUserKnob {41 gamma T Grade1.gamma}
+ addUserKnob {41 size_2 l "Post blur" T Blur1.size}
+}
+ Input {
+  inputs 0
+  name Matte
+  xpos 684
+  ypos 202
+ }
+ Dot {
+  name Dot1
+  xpos 718
+  ypos 257
+ }
+set Nc06fac00 [stack 0]
+ Blur {
+  channels rgba
+  name Blur31
+  xpos 628
+  ypos 301
+ }
+ Invert {
+  channels rgba
+  name Invert8
+  xpos 628
+  ypos 329
+ }
+push $Nc06fac00
+ Blur {
+  channels rgba
+  name Blur32
+  xpos 746
+  ypos 304
+ }
+ Merge2 {
+  inputs 2
+  operation min
+  name Merge87
+  xpos 693
+  ypos 363
+ }
+ Grade {
+  channels rgba
+  white_clamp true
+  name Grade1
+  xpos 693
+  ypos 400
+ }
+ Blur {
+  channels rgba
+  name Blur1
+  selected true
+  xpos 693
+  ypos 428
+ }
+set Nced8fc00 [stack 0]
+ Viewer {
+  viewerProcess None
+  name Viewer1
+  xpos 843
+  ypos 423
+ }
+push $Nced8fc00
+ Output {
+  name Output1
+  xpos 693
+  ypos 475
+ }
+end_group

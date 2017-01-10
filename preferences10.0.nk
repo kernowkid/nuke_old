@@ -1,0 +1,25 @@
+Preferences {
+ inputs 0
+ name Preferences
+ LocalizationSizeLimit 100
+ diskCacheGB 20
+ selectedGPUDeviceName "Quadro K4000"
+ platformPathRemaps ""
+ FloatingWindowHint "Normal (KDE)"
+ maxPanels 1
+ colorPickerDefaultMode "floating color picker"
+ expression_arrows false
+ clone_arrows false
+ goofy_foot false
+ rgb_only true
+ defaultBufferDepth half-float
+ defaultGPUForViewer true
+ viewer_bg_color_3D 0x666666ff
+ Viewer3DControlEmulation Maya
+ echoAllCommands true
+ addUserKnob {20 J_Ops}
+ addUserKnob {7 j_ops_ver +INVISIBLE}
+ addUserKnob {6 j_ops_enable_drop l "Improved drag and drop" t "Enable/disable a somewhat improved drag and drop behaviour. Requires Nuke restart to take effect. Adds creation of geo, camera, light and vectorfield nodes based on incoming file extensions, as well as support for sequences when dropping folders onto DAG. Warning: does not observe hash vs regex file path expression, due to Nuke python functions ignoring it." +STARTLINE}
+ addUserKnob {26 j_ops_dropdivider_label l "Drag And Drop"}
+ addUserKnob {6 j_ops_drop_recurse l "Recurse directories" t "Enable/disable recursion into directories dropped on DAG. When enabled will result in entire directory structure being imported into DAG, when disabled only the directory dropped will be imported (ie none of its sub directories)" -STARTLINE}
+}

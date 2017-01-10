@@ -1,0 +1,13 @@
+set cut_paste_input [stack 0]
+version 10.0 v3
+push $cut_paste_input
+Crop {
+ box {{box.x-this.exp} {box.y-this.exp} {width+this.exp} {height+this.exp}}
+ name CropExpand
+ selected true
+ xpos 13
+ ypos -442
+ addUserKnob {20 User}
+ addUserKnob {7 exp l expand R 0 100}
+ exp 50
+}

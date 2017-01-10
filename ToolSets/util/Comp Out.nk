@@ -1,0 +1,178 @@
+set cut_paste_input [stack 0]
+version 10.0 v4
+BackdropNode {
+ inputs 0
+ name BackdropNode6
+ tile_color 0xaaaaaa00
+ label "Plate reformat"
+ note_font "Verdana Bold Bold Bold"
+ note_font_size 42
+ selected true
+ xpos -2333
+ ypos 6891
+ bdwidth 351
+ bdheight 295
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode7
+ tile_color 0x8e8e3800
+ label RENDER
+ note_font "Verdana Bold Bold"
+ note_font_size 42
+ selected true
+ xpos -2438
+ ypos 7265
+ bdwidth 547
+ bdheight 457
+}
+push $cut_paste_input
+Remove {
+ operation keep
+ channels rgba
+ name Remove1
+ selected true
+ xpos -2215
+ ypos 7030
+}
+Reformat {
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ resize none
+ name Reformat2
+ selected true
+ xpos -2215
+ ypos 7080
+}
+Dot {
+ name Dot12
+ selected true
+ xpos -2181
+ ypos 7414
+}
+set N86cccc00 [stack 0]
+Dot {
+ name Dot13
+ selected true
+ xpos -2034
+ ypos 7414
+}
+OCIOFileTransform {
+ file C:/mnt/workspace/projects/library/ref/LUTs/canon1DmkIV_007.csp
+ working_space linear
+ name OCIOFileTransform3
+ selected true
+ xpos -2068
+ ypos 7478
+}
+NoOp {
+ name NoOp1
+ tile_color 0x2c7222ff
+ label "Render jpgs"
+ selected true
+ xpos -2068
+ ypos 7538
+}
+WriteTank {
+ name out_jpgs
+ label "Shotgun Write JPEG, 1.0 4-2-2"
+ note_font Verdana
+ selected true
+ xpos -2068
+ ypos 7631
+ tank_channel ""
+ profile_name "JPEG, 1.0 4-2-2"
+ render_template nuke_shot_render_jpeg
+ publish_template nuke_shot_render_pub_jpeg
+ cached_path C:/mnt/images/projects/dfsSofaTime/spt/gxd/gxd00300/render/wip/cp/comp/master/v000/dfsSofaTime-gxd-gxd00300_master-comp_002_cp_v000.%04d.jpg
+ proxy_render_template ""
+ proxy_publish_template ""
+ tk_cached_proxy_path C:/mnt/images/projects/dfsSofaTime/spt/gxd/gxd00300/render/wip/cp/comp/master/v000/dfsSofaTime-gxd-gxd00300_master-comp_002_cp_v000.%04d.jpg
+ tk_last_known_script "C:\\mnt\\workspace\\projects\\dfsSofaTime\\spt\\gxd\\gxd00300\\comp\\wip\\master\\dfsSofaTime-gxd-gxd00300_master-comp_v002.nk"
+ tk_file_type jpeg
+ tk_file_type_settings "(dp0\nS'_jpeg_quality'\np1\nF1.0\nsS'_jpeg_sub_sampling'\np2\nS'4:2:2'\np3\ns."
+ tk_write_node_settings UydcbmZpbGUgQzovbW50L2ltYWdlcy9wcm9qZWN0cy9teWVyMjAxNi9zcHQvc2F2ZXNDaHJpc3RtYXMvc2MwNDAwMC9yZW5kZXIvd2lwL2NwL2NvbXAvZGVyaWcvdjAwMC9teWVyMjAxNi1zYXZlc0NocmlzdG1hcy1zYzA0MDAwX2RlcmlnLWNvbXBfMDAyX2NwX3YwMDAuMDAzNC5qcGdcbnByb3h5IEM6L21udC9pbWFnZXMvcHJvamVjdHMvbXllcjIwMTYvc3B0L3NhdmVzQ2hyaXN0bWFzL3NjMDQwMDAvcmVuZGVyL3dpcC9jcC9jb21wL2RlcmlnL3YwMDAvbXllcjIwMTYtc2F2ZXNDaHJpc3RtYXMtc2MwNDAwMF9kZXJpZy1jb21wXzAwMl9jcF92MDAwLjAwMzQuanBnXG5maWxlX3R5cGUganBlZ1xuX2pwZWdfcXVhbGl0eSAxXG5fanBlZ19zdWJfc2FtcGxpbmcgNDoyOjJcbmNoZWNrSGFzaE9uUmVhZCBmYWxzZVxuYmVmb3JlUmVuZGVyICJpbXBvcnQgbnVrZVxcbmlmIGhhc2F0dHIobnVrZSwgXFwiX3Nob3RndW5fd3JpdGVfbm9kZV9oYW5kbGVyXFwiKTpcXG4gICAgbnVrZS5fc2hvdGd1bl93cml0ZV9ub2RlX2hhbmRsZXIub25fYmVmb3JlX3JlbmRlcl9naXptb19jYWxsYmFjaygpIlxuYWZ0ZXJSZW5kZXIgImltcG9ydCBudWtlXFxuaWYgaGFzYXR0cihudWtlLCBcXCJfc2hvdGd1bl93cml0ZV9ub2RlX2hhbmRsZXJcXCIpOlxcbiAgICBudWtlLl9zaG90Z3VuX3dyaXRlX25vZGVfaGFuZGxlci5vbl9hZnRlcl9yZW5kZXJfZ2l6bW9fY2FsbGJhY2soKSInCnAwCi4=
+ channels rgb
+ frame ""
+ views {main}
+ checkHashOnRead false
+ _promoted_0 {}
+ _promoted_1 {}
+ _promoted_2 {}
+ _promoted_3 {}
+ _promoted_4 {}
+ _promoted_5 {}
+ _promoted_6 {}
+ _promoted_7 {}
+ _promoted_8 {}
+ _promoted_9 {}
+ _promoted_10 {}
+ _promoted_11 {}
+ _promoted_12 {}
+ _promoted_13 {}
+ _promoted_14 {}
+ _promoted_15 {}
+ _promoted_16 {}
+ _promoted_17 {}
+ _promoted_18 {}
+ _promoted_19 {}
+}
+push $N86cccc00
+Dot {
+ name Dot15
+ selected true
+ xpos -2346
+ ypos 7414
+}
+NoOp {
+ name NoOp2
+ tile_color 0x2c7222ff
+ label "Render EXRs"
+ selected true
+ xpos -2380
+ ypos 7465
+}
+WriteTank {
+ name out
+ label "Shotgun Write Stereo Exr, 32 bit"
+ note_font Verdana
+ selected true
+ xpos -2380
+ ypos 7560
+ disable true
+ tank_channel compOut
+ profile_name "Stereo Exr, 32 bit"
+ render_template nuke_shot_render_stereo
+ publish_template nuke_shot_render_pub_stereo
+ cached_path C:/mnt/images/projects/dfsSofaTime/spt/gxd/gxd00300/render/wip/cp/comp/master/v000/compOut/dfsSofaTime-gxd-gxd00300_master-comp_%V_002_compOut_cp_v000.%04d.exr
+ proxy_render_template ""
+ proxy_publish_template ""
+ tk_cached_proxy_path C:/mnt/images/projects/dfsSofaTime/spt/gxd/gxd00300/render/wip/cp/comp/master/v000/compOut/dfsSofaTime-gxd-gxd00300_master-comp_%V_002_compOut_cp_v000.%04d.exr
+ tk_last_known_script "C:\\mnt\\workspace\\projects\\dfsSofaTime\\spt\\gxd\\gxd00300\\comp\\wip\\master\\dfsSofaTime-gxd-gxd00300_master-comp_v002.nk"
+ tk_file_type exr
+ tk_file_type_settings "(dp0\nS'datatype'\np1\nS'32 bit float'\np2\ns."
+ tk_write_node_settings UydcbmZpbGUgQzovbW50L2ltYWdlcy9wcm9qZWN0cy9teWVyMjAxNi9zcHQvc2F2ZXNDaHJpc3RtYXMvc2MwNDAwMC9yZW5kZXIvd2lwL2NwL2NvbXAvZGVyaWcvdjAwMC9TaG90Z3VuV3JpdGUxL215ZXIyMDE2LXNhdmVzQ2hyaXN0bWFzLXNjMDQwMDBfZGVyaWctY29tcF9tYWluXzAwMl9TaG90Z3VuV3JpdGUxX2NwX3YwMDAuMDAzNC5leHJcbnByb3h5IEM6L21udC9pbWFnZXMvcHJvamVjdHMvbXllcjIwMTYvc3B0L3NhdmVzQ2hyaXN0bWFzL3NjMDQwMDAvcmVuZGVyL3dpcC9jcC9jb21wL2RlcmlnL3YwMDAvU2hvdGd1bldyaXRlMS9teWVyMjAxNi1zYXZlc0NocmlzdG1hcy1zYzA0MDAwX2RlcmlnLWNvbXBfbWFpbl8wMDJfU2hvdGd1bldyaXRlMV9jcF92MDAwLjAwMzQuZXhyXG5maWxlX3R5cGUgZXhyXG5sYXN0IDczXG5iZWZvcmVSZW5kZXIgImltcG9ydCBudWtlXFxuaWYgaGFzYXR0cihudWtlLCBcXCJfc2hvdGd1bl93cml0ZV9ub2RlX2hhbmRsZXJcXCIpOlxcbiAgICBudWtlLl9zaG90Z3VuX3dyaXRlX25vZGVfaGFuZGxlci5vbl9iZWZvcmVfcmVuZGVyX2dpem1vX2NhbGxiYWNrKCkiXG5hZnRlclJlbmRlciAiaW1wb3J0IG51a2VcXG5pZiBoYXNhdHRyKG51a2UsIFxcIl9zaG90Z3VuX3dyaXRlX25vZGVfaGFuZGxlclxcIik6XFxuICAgIG51a2UuX3Nob3RndW5fd3JpdGVfbm9kZV9oYW5kbGVyLm9uX2FmdGVyX3JlbmRlcl9naXptb19jYWxsYmFjaygpIicKcDAKLg==
+ channels rgb
+ frame ""
+ views {main}
+ last 73
+ _promoted_0 {}
+ _promoted_1 {}
+ _promoted_2 {}
+ _promoted_3 {}
+ _promoted_4 {}
+ _promoted_5 {}
+ _promoted_6 {}
+ _promoted_7 {}
+ _promoted_8 {}
+ _promoted_9 {}
+ _promoted_10 {}
+ _promoted_11 {}
+ _promoted_12 {}
+ _promoted_13 {}
+ _promoted_14 {}
+ _promoted_15 {}
+ _promoted_16 {}
+ _promoted_17 {}
+ _promoted_18 {}
+ _promoted_19 {}
+}

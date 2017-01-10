@@ -1,0 +1,104 @@
+set cut_paste_input [stack 0]
+version 10.0 v3
+BackdropNode {
+ inputs 0
+ name BackdropNode118
+ tile_color 0x71c67100
+ label "adjust hi's"
+ note_font_size 42
+ selected true
+ xpos 11417
+ ypos 25023
+ bdwidth 374
+ bdheight 242
+}
+push $cut_paste_input
+Dot {
+ name Dot433
+ selected true
+ xpos 11461
+ ypos 25107
+}
+set N811af800 [stack 0]
+Dot {
+ name Dot434
+ selected true
+ xpos 11461
+ ypos 25169
+}
+set N811af400 [stack 0]
+push $N811af800
+Saturation {
+ saturation 0
+ name Saturation12
+ selected true
+ xpos 11561
+ ypos 25103
+ postage_stamp_frame 1001
+}
+set N811ae000 [stack 0]
+Merge2 {
+ inputs 2
+ operation divide
+ name Merge126
+ selected true
+ xpos 11561
+ ypos 25165
+ postage_stamp_frame 1001
+}
+Saturation {
+ saturation 0.8
+ name Saturation19
+ selected true
+ xpos 11561
+ ypos 25199
+ postage_stamp_frame 1001
+}
+push $N811ae000
+ColorLookup {
+ channels rgb
+ lut {master {curve C 0 x0.4868762195 0.5191542506 x1.254595041 0.8092039824}
+   red {}
+   green {}
+   blue {}
+   alpha {}}
+ name ColorLookup3
+ selected true
+ xpos 11701
+ ypos 25103
+ postage_stamp_frame 1001
+}
+Saturation {
+ saturation 0.8
+ name Saturation20
+ selected true
+ xpos 11701
+ ypos 25193
+ postage_stamp_frame 1001
+}
+Dot {
+ name Dot435
+ selected true
+ xpos 11735
+ ypos 25239
+}
+Merge2 {
+ inputs 2
+ operation multiply
+ name Merge127
+ selected true
+ xpos 11561
+ ypos 25235
+ postage_stamp_frame 1001
+}
+push $N811af400
+Keymix {
+ inputs 2
+ channels rgb
+ mix 0.81
+ name Keymix17
+ selected true
+ xpos 11427
+ ypos 25235
+ postage_stamp_frame 1001
+}

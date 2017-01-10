@@ -1,0 +1,158 @@
+set cut_paste_input [stack 0]
+version 10.0 v4
+BackdropNode {
+ inputs 0
+ name BackdropNode13
+ tile_color 0x9c1818ff
+ label <center>Output
+ note_font "Verdana Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+ note_font_size 42
+ note_font_color 0xff
+ selected true
+ xpos 1546
+ ypos 2048
+ bdwidth 412
+ bdheight 248
+}
+push $cut_paste_input
+Crop {
+ box {0 0 2134 1423}
+ name Crop1
+ selected true
+ xpos 1856
+ ypos 1854
+}
+Transform {
+ translate {{(random((frame)/((Transform6.xfrequency))))*(Transform6.xamplitude)} {(random((frame+1000)/(Transform6.yfrequency)))*(Transform6.yamplitude)}}
+ center {1067 711.5}
+ filter Lanczos6
+ black_outside false
+ name Transform6
+ selected true
+ xpos 1856
+ ypos 1919
+ addUserKnob {20 User}
+ addUserKnob {7 xfrequency l "X Frequency" R 0 100}
+ xfrequency 13.5
+ addUserKnob {7 yfrequency l "Y Frequency" R 0 100}
+ yfrequency 29
+ addUserKnob {7 xamplitude l "X Amplitude" R 0 100}
+ xamplitude 11.4375
+ addUserKnob {7 yamplitude l "Y Amplitude" R 0 100}
+ yamplitude 17.0625
+}
+Reformat {
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ resize none
+ name Reformat2
+ selected true
+ xpos 1856
+ ypos 1989
+}
+set N9facb400 [stack 0]
+Dot {
+ name Dot57
+ selected true
+ xpos 1595
+ ypos 1999
+}
+OCIOFileTransform {
+ file C:/mnt/workspace/projects/library/ref/LUTs/canon1DmkIV_007.csp
+ version 2
+ working_space linear
+ name OCIOFileTransform4
+ selected true
+ xpos 1561
+ ypos 2147
+}
+WriteTank {
+ name DPX
+ label "Shotgun Write Mono Dpx"
+ note_font Verdana
+ selected true
+ xpos 1561
+ ypos 2224
+ tank_channel DPX
+ tk_use_name_as_channel true
+ profile_name "Mono Dpx"
+ render_template nuke_shot_render_mono_dpx
+ publish_template nuke_shot_render_pub_mono_dpx
+ cached_path C:/mnt/images/projects/dfsSofaTime/spt/ws/ws00400/render/wip/cp/comp/master/v000/DPX/dfsSofaTime-ws-ws00400_master-comp_002_DPX_cp_v000.%04d.dpx
+ proxy_render_template ""
+ proxy_publish_template ""
+ tk_cached_proxy_path C:/mnt/images/projects/dfsSofaTime/spt/ws/ws00400/render/wip/cp/comp/master/v000/DPX/dfsSofaTime-ws-ws00400_master-comp_002_DPX_cp_v000.%04d.dpx
+ tk_last_known_script "C:\\mnt\\workspace\\projects\\dfsSofaTime\\spt\\ws\\ws00400\\comp\\wip\\master\\dfsSofaTime-ws-ws00400_master-comp_v002.nk"
+ tk_file_type dpx
+ tk_file_type_settings "(dp0\n."
+ tk_write_node_settings ""
+ channels rgb
+ frame ""
+ colorspace sRGB
+ views {main}
+ checkHashOnRead false
+ _promoted_0 {}
+ _promoted_1 {}
+ _promoted_2 {}
+ _promoted_3 {}
+ _promoted_4 {}
+ _promoted_5 {}
+ _promoted_6 {}
+ _promoted_7 {}
+ _promoted_8 {}
+ _promoted_9 {}
+ _promoted_10 {}
+ _promoted_11 {}
+ _promoted_12 {}
+ _promoted_13 {}
+ _promoted_14 {}
+ _promoted_15 {}
+ _promoted_16 {}
+ _promoted_17 {}
+ _promoted_18 {}
+ _promoted_19 {}
+}
+push $N9facb400
+WriteTank {
+ name EXR
+ label "Shotgun Write Stereo Exr, 16 bit"
+ note_font Verdana
+ selected true
+ xpos 1856
+ ypos 2230
+ tank_channel EXR
+ tk_use_name_as_channel true
+ profile_name "Stereo Exr, 16 bit"
+ render_template nuke_shot_render_stereo
+ publish_template nuke_shot_render_pub_stereo
+ cached_path C:/mnt/images/projects/dfsSofaTime/spt/ws/ws00400/render/wip/cp/comp/master/v000/EXR/dfsSofaTime-ws-ws00400_master-comp_%V_002_EXR_cp_v000.%04d.exr
+ proxy_render_template ""
+ proxy_publish_template ""
+ tk_cached_proxy_path C:/mnt/images/projects/dfsSofaTime/spt/ws/ws00400/render/wip/cp/comp/master/v000/EXR/dfsSofaTime-ws-ws00400_master-comp_%V_002_EXR_cp_v000.%04d.exr
+ tk_last_known_script "C:\\mnt\\workspace\\projects\\dfsSofaTime\\spt\\ws\\ws00400\\comp\\wip\\master\\dfsSofaTime-ws-ws00400_master-comp_v002.nk"
+ tk_file_type exr
+ tk_file_type_settings "(dp0\nS'datatype'\np1\nS'16 bit half'\np2\ns."
+ tk_write_node_settings ""
+ channels rgb
+ frame ""
+ views {main}
+ _promoted_0 {}
+ _promoted_1 {}
+ _promoted_2 {}
+ _promoted_3 {}
+ _promoted_4 {}
+ _promoted_5 {}
+ _promoted_6 {}
+ _promoted_7 {}
+ _promoted_8 {}
+ _promoted_9 {}
+ _promoted_10 {}
+ _promoted_11 {}
+ _promoted_12 {}
+ _promoted_13 {}
+ _promoted_14 {}
+ _promoted_15 {}
+ _promoted_16 {}
+ _promoted_17 {}
+ _promoted_18 {}
+ _promoted_19 {}
+}

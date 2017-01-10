@@ -1,0 +1,580 @@
+set cut_paste_input [stack 0]
+version 10.0 v3
+push $cut_paste_input
+Group {
+name DeadPixelRemove1
+knobChanged "n=nuke.thisNode()\nk=nuke.thisKnob()\nif k.name()=='viewMattes':\n    if k.value() != 'output':\n        n\['bgMix'].setVisible(True)\n    else:\n        n\['bgMix'].setVisible(False)  \n"
+note_font "Bitstream Vera Sans"
+selected true
+xpos -3814
+ypos 3353
+mapsize {0.15 0.15}
+addUserKnob {20 User l Deadpixels}
+addUserKnob {3 frame2Hold l "dead pixel frame"}
+frame2Hold 11
+addUserKnob {22 setFrame l "set to this frame" -STARTLINE T "n=nuke.thisNode()\nn\['frame2Hold'].setValue(nuke.frame())\n"}
+addUserKnob {26 text l "" t "choose a black frame from end of clip" +STARTLINE T "choose a black frame from end of clip"}
+addUserKnob {41 disable_1 l "Use Alt Source for Black frames" T Switch3.disable}
+addUserKnob {26 ""}
+addUserKnob {41 channels T Remove2.channels}
+addUserKnob {7 sleepPix l "sleeping px matte" t "threshold for sleeping pixels - raise/lower the value until you only have mattes for the lesser offensive (sleeping) pixels" R 0.005 0.25}
+sleepPix 0.02
+addUserKnob {7 deadPix l "dead px matte" t "threshold for dead pixels - raise/lower the value until you only have mattes for the worst (dead) pixels" R 0.005 0.25}
+deadPix 0.2
+addUserKnob {26 ""}
+addUserKnob {3 sleepMedian l "median (sleeping)"}
+sleepMedian 1
+addUserKnob {3 deadMedian l "median (dead)"}
+deadMedian 1
+addUserKnob {6 swapOrder l "swap order" +STARTLINE}
+addUserKnob {26 ""}
+addUserKnob {4 viewMattes l view t "Red is sleeping pixels and Green is Dead pixels\n" M {output "both (overlay)" "sleeping (overlay)" "dead (overlay)" "" ""}}
+addUserKnob {7 bgMix l "background mix" t "fades bg to help find overlayed pixels" +HIDDEN}
+bgMix 0.5
+addUserKnob {26 ""}
+addUserKnob {6 outputMatte l "output deadpixel matte" t "This will add deadpixels.sleeping and deadpixels.green channels" +STARTLINE}
+}
+Input {
+inputs 0
+name exclRoto
+xpos 358
+ypos 4
+number 1
+}
+Input {
+inputs 0
+name source
+xpos 485
+ypos -758
+}
+set Nddd1000 [stack 0]
+Dot {
+name Dot4
+xpos 519
+ypos -594
+}
+set Nddd0c00 [stack 0]
+Dot {
+name Dot9
+xpos 292
+ypos -208
+}
+set Nddd0800 [stack 0]
+Dot {
+name Dot12
+xpos 352
+ypos -54
+}
+Input {
+inputs 0
+name extMattes
+xpos 321
+ypos -444
+number 2
+}
+add_layer {deadPixels deadPixels.sleeping deadPixels.dead}
+Shuffle {
+in alpha
+green red
+blue red
+alpha red
+out deadPixels
+name Shuffle4
+xpos 321
+ypos -395
+}
+push 0
+push $Nddd1000
+Input {
+inputs 0
+name alt_black_frames
+xpos 659
+ypos -756
+number 3
+}
+Switch {
+inputs 2
+which 1
+name Switch3
+selected true
+xpos 659
+ypos -695
+disable true
+}
+Dot {
+name Dot3
+xpos 693
+ypos -662
+}
+set N8b09c00 [stack 0]
+FrameHold {
+first_frame {{frame2Hold}}
+name FrameHold2
+xpos 659
+ypos -620
+}
+Remove {
+operation keep
+channels rgb
+name Remove2
+xpos 659
+ypos -564
+}
+set N8b09800 [stack 0]
+Group {
+name binaryKeyer2
+label "dead pixels"
+note_font "Bitstream Vera Sans"
+xpos 659
+ypos -506
+mapsize {0.15 0.15}
+addUserKnob {20 User}
+addUserKnob {6 srgbSpace l "video colourspace" +STARTLINE}
+srgbSpace true
+addUserKnob {7 threshMin l min}
+threshMin {{deadPix}}
+addUserKnob {7 threshMax l max}
+threshMax 1
+addUserKnob {4 nOperation l operation M {Min Max Luminance Red Green Blue ""}}
+nOperation Max
+addUserKnob {6 nInvert l invert -STARTLINE}
+}
+Input {
+inputs 0
+name Input1
+xpos -871
+ypos 248
+}
+set N8b09400 [stack 0]
+Colorspace {
+colorspace_out sRGB
+name Colorspace1
+xpos -601
+ypos 248
+disable {{!srgbSpace i}}
+}
+Dot {
+name Dot1
+xpos -567
+ypos 318
+}
+set N8b08c00 [stack 0]
+Expression {
+expr3 "b>threshMin && b<threshMax?1:0"
+name BlueThresholdKeyer2
+xpos -279
+ypos 462
+}
+push $N8b08c00
+Expression {
+expr3 "g>threshMin && g<threshMax?1:0"
+name GreenThresholdKeyer1
+xpos -374
+ypos 467
+}
+push $N8b08c00
+Expression {
+expr3 "r>threshMin && r<threshMax?1:0"
+name RedThresholdKeyer
+xpos -479
+ypos 464
+}
+push $N8b08c00
+Expression {
+expr3 "(0.3*r+0.59*g+0.11*b)>threshMin && (0.3*r+0.59*g+0.11*b)<threshMax?1:0"
+name LumaThresholdKeyer
+xpos -584
+ypos 462
+}
+push $N8b08c00
+Expression {
+expr3 "max(r,g,b)>threshMin && max(r,g,b)<threshMax?1:0"
+name MaxThresholdKeyer
+xpos -674
+ypos 458
+}
+push $N8b08c00
+Expression {
+expr3 "min(r,g,b)>threshMin && min(r,g,b)<threshMax?1:0"
+name MinThresholdKeyer
+xpos -768
+ypos 456
+}
+Switch {
+inputs 6
+which {{nOperation i}}
+name Switch4
+xpos -572
+ypos 602
+}
+Colorspace {
+colorspace_in sRGB
+name Colorspace2
+xpos -572
+ypos 679
+disable {{!srgbSpace i}}
+}
+Invert {
+channels alpha
+name Invert1
+selected true
+xpos -572
+ypos 707
+disable {{!nInvert}}
+}
+push $N8b09400
+Copy {
+inputs 2
+from0 rgba.alpha
+to0 rgba.alpha
+name Copy1
+xpos -862
+ypos 700
+}
+Output {
+name Output1
+xpos -862
+ypos 830
+}
+end_group
+Shuffle {
+in alpha
+green red
+blue green2
+alpha green2
+out deadPixels
+name Shuffle6
+xpos 659
+ypos -399
+}
+push $N8b09800
+Group {
+name binaryKeyer1
+label "sleeping pixels"
+note_font "Bitstream Vera Sans"
+xpos 567
+ypos -506
+mapsize {0.15 0.15}
+addUserKnob {20 User}
+addUserKnob {6 srgbSpace l "video colourspace" +STARTLINE}
+srgbSpace true
+addUserKnob {7 threshMin l min}
+threshMin {{sleepPix}}
+addUserKnob {7 threshMax l max}
+threshMax {{deadPix}}
+addUserKnob {4 nOperation l operation M {Min Max Luminance Red Green Blue ""}}
+nOperation Max
+addUserKnob {6 nInvert l invert -STARTLINE}
+}
+Input {
+inputs 0
+name Input1
+xpos -871
+ypos 248
+}
+set Nee704400 [stack 0]
+Colorspace {
+colorspace_out sRGB
+name Colorspace1
+xpos -601
+ypos 248
+disable {{!srgbSpace i}}
+}
+Dot {
+name Dot1
+xpos -567
+ypos 318
+}
+set Nac01c00 [stack 0]
+Expression {
+expr3 "b>threshMin && b<threshMax?1:0"
+name BlueThresholdKeyer2
+xpos -279
+ypos 462
+}
+push $Nac01c00
+Expression {
+expr3 "g>threshMin && g<threshMax?1:0"
+name GreenThresholdKeyer1
+xpos -374
+ypos 467
+}
+push $Nac01c00
+Expression {
+expr3 "r>threshMin && r<threshMax?1:0"
+name RedThresholdKeyer
+xpos -479
+ypos 464
+}
+push $Nac01c00
+Expression {
+expr3 "(0.3*r+0.59*g+0.11*b)>threshMin && (0.3*r+0.59*g+0.11*b)<threshMax?1:0"
+name LumaThresholdKeyer
+xpos -584
+ypos 462
+}
+push $Nac01c00
+Expression {
+expr3 "max(r,g,b)>threshMin && max(r,g,b)<threshMax?1:0"
+name MaxThresholdKeyer
+xpos -674
+ypos 458
+}
+push $Nac01c00
+Expression {
+expr3 "min(r,g,b)>threshMin && min(r,g,b)<threshMax?1:0"
+name MinThresholdKeyer
+xpos -768
+ypos 456
+}
+Switch {
+inputs 6
+which {{nOperation i}}
+name Switch4
+xpos -572
+ypos 602
+}
+Colorspace {
+colorspace_in sRGB
+name Colorspace2
+xpos -572
+ypos 679
+disable {{!srgbSpace i}}
+}
+Invert {
+channels alpha
+name Invert1
+selected true
+xpos -572
+ypos 707
+disable {{!nInvert}}
+}
+push $Nee704400
+Copy {
+inputs 2
+from0 rgba.alpha
+to0 rgba.alpha
+name Copy1
+xpos -862
+ypos 700
+}
+Output {
+name Output1
+xpos -862
+ypos 830
+}
+end_group
+Shuffle {
+in alpha
+green red2
+blue red
+alpha red
+out deadPixels
+name Shuffle5
+xpos 567
+ypos -398
+}
+Merge2 {
+inputs 3+1
+operation max
+Achannels {-deadPixels.sleeping deadPixels.dead}
+Bchannels {deadPixels.sleeping -deadPixels.dead}
+output deadPixels
+name Merge2
+xpos 567
+ypos -336
+}
+push $Nddd0c00
+Copy {
+inputs 2
+from0 deadPixels.sleeping
+to0 deadPixels.sleeping
+from1 deadPixels.dead
+to1 deadPixels.dead
+name Copy2
+xpos 485
+ypos -281
+}
+set N1e1f000 [stack 0]
+Grade {
+channels deadPixels
+white {100 100 1 1}
+name Grade2
+xpos 585
+ypos -275
+}
+Multiply {
+value {{bgMix i}}
+name Multiply2
+xpos 585
+ypos -209
+}
+Dot {
+name Dot2
+xpos 682
+ypos -197
+}
+set N1e1e400 [stack 0]
+Dot {
+name Dot5
+xpos 792
+ypos -197
+}
+set N1e1e000 [stack 0]
+push $N1e1e000
+Merge2 {
+inputs 2
+operation plus
+Achannels {-deadPixels.sleeping deadPixels.dead}
+name Merge4
+label "Dead\n"
+xpos 761
+ypos -156
+}
+push $N1e1e400
+push $N1e1e400
+Merge2 {
+inputs 2
+operation plus
+Achannels {deadPixels.sleeping -deadPixels.dead}
+name Merge3
+label "Sleeping\n"
+xpos 648
+ypos -76
+}
+push $N1e1e000
+Dot {
+name Dot13
+xpos 887
+ypos -201
+}
+set Nf0827400 [stack 0]
+push $Nf0827400
+Merge2 {
+inputs 2
+operation plus
+Achannels deadPixels
+name Merge1
+label "both\n"
+xpos 853
+ypos -52
+}
+push $N1e1f000
+Median {
+size {{deadMedian}}
+ignore_top_line false
+maskChannelInput deadPixels.dead
+name Median2
+xpos 387
+ypos -211
+}
+Median {
+size {{sleepMedian}}
+ignore_top_line false
+maskChannelInput deadPixels.sleeping
+name Median1
+xpos 387
+ypos -159
+}
+push $N1e1f000
+Median {
+size {{sleepMedian i}}
+ignore_top_line false
+maskChannelInput deadPixels.sleeping
+name Median3
+xpos 485
+ypos -213
+}
+Median {
+size {{deadMedian}}
+ignore_top_line false
+maskChannelInput deadPixels.dead
+name Median4
+xpos 485
+ypos -160
+}
+Switch {
+inputs 2
+which {{swapOrder}}
+name Switch2
+xpos 485
+ypos -104
+}
+Switch {
+inputs 4
+which {{"\$gui?viewMattes:0"}}
+name Switch1
+xpos 485
+ypos -45
+}
+Keymix {
+inputs 3
+name Keymix3
+xpos 485
+ypos 27
+}
+set N180bc00 [stack 0]
+push $N180bc00
+push $Nddd0800
+Copy {
+inputs 2
+from0 rgba.red
+to0 rgba.red
+from1 rgba.green
+to1 rgba.green
+from2 rgba.blue
+to2 rgba.blue
+name Copy1
+xpos 258
+ypos 149
+disable {{frame2Hold>0?0:1 i}}
+}
+Copy {
+inputs 2
+from0 -rgba.alpha
+to0 -rgba.alpha
+channels deadPixels
+name Copy3
+xpos 258
+ypos 270
+disable {{!outputMatte i}}
+}
+Output {
+name Output1
+xpos 258
+ypos 342
+}
+push $N8b09c00
+Dot {
+name Dot1
+xpos 849
+ypos -594
+}
+Multiply {
+value 0
+name Multiply1
+xpos 815
+ypos -310
+}
+Grade {
+black {10 0 1 0}
+name Grade1
+xpos 815
+ypos -268
+}
+push $N1e1f000
+Viewer {
+gamma 3.34
+input_process false
+name Viewer1
+xpos 1071
+ypos -406
+}
+Group {
+inputs 0
+name Group1
+xpos 1597
+ypos -801
+}
+end_group
+end_group

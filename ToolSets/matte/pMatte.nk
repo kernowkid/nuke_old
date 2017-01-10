@@ -1,0 +1,144 @@
+set cut_paste_input [stack 0]
+version 10.0 v3
+push $cut_paste_input
+add_layer {ET_WORLDPOINT ET_WORLDPOINT.red ET_WORLDPOINT.green ET_WORLDPOINT.blue}
+Group {
+ name pMatte
+ selected true
+ xpos -764
+ ypos 18559
+ addUserKnob {20 User}
+ addUserKnob {41 in l "position data" T MatteP1.in}
+ addUserKnob {41 output T MatteP1.output}
+ addUserKnob {41 unpremultiply T MatteP1.unpremultiply}
+ addUserKnob {41 useAlpha l "ignore outside alpha" T MatteP1.useAlpha}
+ addUserKnob {26 ""}
+ addUserKnob {41 matteShape T MatteP1.matteShape}
+ addUserKnob {41 center T MatteP1.center}
+ addUserKnob {26 ""}
+ addUserKnob {41 rot_order l "rotation order" T MatteP1.rot_order}
+ addUserKnob {41 rotate T MatteP1.rotate}
+ addUserKnob {41 scaling l scale T MatteP1.scaling}
+ addUserKnob {41 uniform_scale l "uniform scale" T MatteP1.uniform_scale}
+ addUserKnob {41 skew T MatteP1.skew}
+ addUserKnob {41 pivot T MatteP1.pivot}
+ addUserKnob {26 ""}
+ addUserKnob {41 falloffType T MatteP1.falloffType}
+ addUserKnob {41 falloff T MatteP1.falloff}
+ addUserKnob {41 exp T MatteP1.exp}
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {4 view M {render "position pass" alpha}}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -503
+  ypos 320
+ }
+ Dot {
+  name Dot45
+  xpos -469
+  ypos 434
+ }
+set Na0b0ec00 [stack 0]
+ MatteP {
+  name MatteP1
+  xpos -635
+  ypos 424
+  in ET_WORLDPOINT
+  output alpha
+  center {-18.1875 61.78125 -705}
+  uniform_scale 6.8
+ }
+set Nc50a7200 [stack 0]
+ Dot {
+  name Dot46
+  xpos -686
+  ypos 434
+ }
+set N6b428800 [stack 0]
+ Dot {
+  name Dot48
+  xpos -686
+  ypos 545
+ }
+set N6b429000 [stack 0]
+ Shuffle {
+  red alpha
+  green alpha
+  blue alpha
+  name Shuffle29
+  label "\[value in] | \[value in2]"
+  xpos -720
+  ypos 587
+ }
+set N42536800 [stack 0]
+ Dot {
+  name Dot1
+  xpos -686
+  ypos 700
+ }
+push $N42536800
+push $N6b428800
+ Dot {
+  name Dot49
+  xpos -775
+  ypos 434
+ }
+ Dot {
+  name Dot50
+  xpos -775
+  ypos 646
+ }
+push $N6b429000
+push $Nc50a7200
+ Shuffle {
+  red alpha
+  green black
+  blue black
+  alpha black
+  name Shuffle28
+  label "\[value in] | \[value in2]"
+  xpos -635
+  ypos 475
+ }
+push $Na0b0ec00
+ Merge2 {
+  inputs 2
+  operation plus
+  name Merge23
+  xpos -503
+  ypos 481
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy1
+  xpos -503
+  ypos 535
+ }
+ Switch {
+  inputs 3
+  which {{parent.view}}
+  name Switch_viewPosPass
+  selected true
+  xpos -503
+  ypos 642
+ }
+set Nbab5da80 [stack 0]
+ Switch {
+  inputs 2
+  which 1
+  name SwitchViewAlpha
+  xpos -543
+  ypos 696
+  disable true
+ }
+push $Nbab5da80
+ Output {
+  name Output1
+  xpos -503
+  ypos 758
+ }
+end_group

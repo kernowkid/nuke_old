@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="1920" h="1200" screen="0">
+        <splitter orientation="1">
+            <split size="1302"/>
+            <splitter orientation="1">
+                <split size="1302"/>
+                <dock id="" hideTitles="1" activePageId="uk.co.thefoundry.scripteditor.2" focus="true">
+                    <page id="uk.co.thefoundry.scripteditor.2"/>
+                </dock>
+            </splitter>
+            <split size="598"/>
+            <splitter orientation="2">
+                <split size="567"/>
+                <dock id="" hideTitles="1" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="567"/>
+                <dock id="" hideTitles="1" activePageId="Properties.1">
+                    <page id="Properties.1"/>
+                </dock>
+            </splitter>
+        </splitter>
+    </window>
+    <window x="1920" y="0" w="1920" h="1200" maximized="1" screen="1">
+        <splitter orientation="1">
+            <split size="950"/>
+            <dock id="" activePageId="uk.co.thefoundry.scripteditor.1">
+                <page id="uk.co.thefoundry.scripteditor.1"/>
+            </dock>
+            <split size="950"/>
+            <dock id="" activePageId="DAG.1">
+                <page id="DAG.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>

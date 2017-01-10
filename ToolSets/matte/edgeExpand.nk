@@ -1,0 +1,1018 @@
+set cut_paste_input [stack 0]
+version 10.0 v4
+push $cut_paste_input
+Group {
+ name EdgeExpand_v2_
+ tile_color 0xff4400ff
+ selected true
+ xpos 2071
+ ypos 411
+ addUserKnob {20 title l Expand}
+ addUserKnob {26 text1 l "Erode matte"}
+ addUserKnob {7 erodematte l size R 0 20}
+ erodematte 8.5
+ addUserKnob {26 text2 l "Expand edge"}
+ addUserKnob {7 size l "1st slice width" t "Size of the initial Blur, in pixels." R 0 20}
+ size 1
+ addUserKnob {26 stepinfo l "" -STARTLINE T "(Max 10)"}
+ addUserKnob {3 steps l slices t "Amount of repetitions of the expansion process."}
+ steps 10
+ addUserKnob {7 size_mult l "slice width multiplier" t "Each step get blurried than the previous one. This is the multiplier beween each step." R 1 5}
+ size_mult 1.2
+ addUserKnob {7 soften l "blur between slices" t "Blur amount between each step. Find the sweet spot." R 0 5}
+ soften 0.4
+ addUserKnob {6 blur_type l "Defocus Softening" t "Use Defocus nodes instad of Blur nodes. It's heavier to process but you get a super cool round edge." +STARTLINE}
+ addUserKnob {6 crop l "Preserve Bounding Box" +STARTLINE}
+ addUserKnob {3 defocus_quality l INVISIBLE +INVISIBLE}
+ defocus_quality 20
+ addUserKnob {26 who l INVISIBLE +INVISIBLE T "Thierry Muller"}
+}
+ Input {
+  inputs 0
+  name premultiplied_input
+  tile_color 0xff00ff
+  xpos -1506
+  ypos -137
+ }
+set Nb85bd000 [stack 0]
+ Dilate {
+  size {{-parent.erodematte}}
+  name Dilate1
+  xpos -1667
+  ypos 16
+  postage_stamp_frame 1002
+ }
+push $Nb85bd000
+ Unpremult {
+  name Unpremult10
+  xpos -1506
+  ypos -47
+  postage_stamp_frame 1002
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy1
+  xpos -1506
+  ypos 16
+  postage_stamp_frame 1002
+ }
+ Premult {
+  name Premult10
+  xpos -1506
+  ypos 80
+  postage_stamp_frame 1002
+ }
+ Crop {
+  box {0 0 {input.width} {input.height}}
+  name Crop1
+  xpos -1506
+  ypos 179
+  disable {{parent.crop}}
+  postage_stamp_frame 1001
+ }
+set Nb85ca400 [stack 0]
+ Dot {
+  name Dot39
+  xpos -1463
+  ypos 12423
+ }
+set Nb85ca800 [stack 0]
+ Dot {
+  name Dot40
+  xpos -1659
+  ypos 12864
+ }
+push $Nb85ca400
+ Dot {
+  name Dot55
+  label "\n1"
+  note_font_size 50
+  xpos 618
+  ypos 462
+ }
+set Nb85cb000 [stack 0]
+ Dot {
+  name Dot1
+  xpos 618
+  ypos 614
+ }
+set Nb85cb400 [stack 0]
+ Defocus {
+  defocus {{parent.Blur3.size}}
+  quality {{parent.defocus_quality}}
+  name Defocus3
+  xpos 729
+  ypos 707
+ }
+push $Nb85cb400
+ Blur {
+  size {{parent.soften*parent.size}}
+  crop false
+  name Blur3
+  xpos 575
+  ypos 713
+ }
+ Switch {
+  inputs 2
+  which {{parent.blur_type}}
+  name Switch2
+  xpos 575
+  ypos 855
+ }
+push $Nb85cb000
+ Dot {
+  name Dot58
+  xpos 1004
+  ypos 462
+ }
+set Nb85c8000 [stack 0]
+ Defocus {
+  defocus {{parent.Blur68.size}}
+  quality {{parent.defocus_quality}}
+  name Defocus9
+  xpos 1090
+  ypos 501
+ }
+push $Nb85c8000
+ Blur {
+  size {{parent.size}}
+  crop false
+  name Blur68
+  selected true
+  xpos 961
+  ypos 505
+ }
+ Switch {
+  inputs 2
+  which {{parent.blur_type}}
+  name Switch6
+  xpos 961
+  ypos 621
+ }
+ Unpremult {
+  name Unpremult30
+  xpos 958
+  ypos 836
+ }
+ Keyer {
+  operation "luminance key"
+  range {0 0 1 1}
+  name Keyer28
+  xpos 958
+  ypos 888
+ }
+ Premult {
+  name Premult35
+  xpos 958
+  ypos 952
+ }
+ Merge2 {
+  inputs 2
+  name Merge64
+  xpos 575
+  ypos 993
+ }
+set Nb85c9800 [stack 0]
+ Dot {
+  name Dot4
+  label "\n2"
+  note_font_size 50
+  xpos 618
+  ypos 1873
+ }
+set Nb85c9c00 [stack 0]
+ Dot {
+  name Dot19
+  xpos 618
+  ypos 1962
+ }
+set Nb85c6000 [stack 0]
+ Defocus {
+  defocus {{parent.Blur9.size}}
+  quality {{parent.defocus_quality}}
+  name Defocus10
+  xpos 703
+  ypos 2043
+ }
+push $Nb85c6000
+ Blur {
+  size {{parent.size*parent.soften*parent.size_mult}}
+  crop false
+  name Blur9
+  xpos 575
+  ypos 2048
+ }
+ Switch {
+  inputs 2
+  which {{parent.blur_type}}
+  name Switch17
+  xpos 575
+  ypos 2203
+ }
+push $Nb85c9c00
+ Dot {
+  name Dot3
+  xpos 1021
+  ypos 1873
+ }
+set Nb85c6c00 [stack 0]
+ Defocus {
+  defocus {{parent.Blur1.size}}
+  quality {{parent.defocus_quality}}
+  name Defocus1
+  xpos 1106
+  ypos 1912
+ }
+push $Nb85c6c00
+ Blur {
+  size {{parent.size*size_mult}}
+  crop false
+  name Blur1
+  xpos 978
+  ypos 1916
+ }
+ Switch {
+  inputs 2
+  which {{parent.blur_type}}
+  name Switch5
+  xpos 978
+  ypos 2032
+ }
+ Unpremult {
+  name Unpremult1
+  xpos 975
+  ypos 2247
+ }
+ Keyer {
+  operation "luminance key"
+  range {0 0 1 1}
+  name Keyer1
+  xpos 975
+  ypos 2299
+ }
+ Premult {
+  name Premult1
+  xpos 975
+  ypos 2363
+ }
+ Merge2 {
+  inputs 2
+  name Merge1
+  xpos 575
+  ypos 2404
+ }
+set Nb85c4400 [stack 0]
+ Dot {
+  name Dot2
+  label "\n3"
+  note_font_size 50
+  xpos 618
+  ypos 3087
+ }
+set Nb85c4800 [stack 0]
+ Dot {
+  name Dot5
+  xpos 618
+  ypos 3266
+ }
+set Nb85c4c00 [stack 0]
+ Defocus {
+  defocus {{parent.Blur10.size}}
+  quality {{parent.defocus_quality}}
+  name Defocus11
+  xpos 704
+  ypos 3305
+ }
+push $Nb85c4c00
+ Blur {
+  size {{parent.size*parent.size_mult*parent.soften*3}}
+  crop false
+  name Blur10
+  xpos 575
+  ypos 3309
+ }
+ Switch {
+  inputs 2
+  which {{parent.blur_type}}
+  name Switch18
+  xpos 575
+  ypos 3425
+ }
+push $Nb85c4800
+ Dot {
+  name Dot8
+  xpos 1021
+  ypos 3087
+ }
+set Nb7ea5c00 [stack 0]
+ Defocus {
+  defocus {{parent.Blur2.size}}
+  quality {{parent.defocus_quality}}
+  name Defocus2
+  xpos 1106
+  ypos 3126
+ }
+push $Nb7ea5c00
+ Blur {
+  size {{parent.size*pow(size_mult,3)}}
+  crop false
+  name Blur2
+  xpos 978
+  ypos 3130
+ }
+ Switch {
+  inputs 2
+  which {{parent.blur_type}}
+  name Switch1
+  xpos 978
+  ypos 3246
+ }
+ Unpremult {
+  name Unpremult3
+  xpos 975
+  ypos 3424
+ }
+ Keyer {
+  operation "luminance key"
+  range {0 0 1 1}
+  name Keyer2
+  xpos 975
+  ypos 3476
+ }
+ Premult {
+  name Premult3
+  xpos 975
+  ypos 3540
+ }
+ Merge2 {
+  inputs 2
+  name Merge2
+  xpos 575
+  ypos 3616
+ }
+set Nb7ea4400 [stack 0]
+ Dot {
+  name Dot6
+  label "\n4"
+  note_font_size 50
+  xpos 618
+  ypos 4444
+ }
+set Nb7ea4000 [stack 0]
+ Dot {
+  name Dot10
+  xpos 618
+  ypos 4555
+ }
+set Nb7ea7c00 [stack 0]
+ Defocus {
+  defocus {{parent.Blur11.size}}
+  quality {{parent.defocus_quality}}
+  name Defocus12
+  xpos 704
+  ypos 4641
+ }
+push $Nb7ea7c00
+ Blur {
+  size {{parent.size*parent.size_mult*parent.soften*4}}
+  crop false
+  name Blur11
+  xpos 575
+  ypos 4645
+ }
+ Switch {
+  inputs 2
+  which {{parent.blur_type}}
+  name Switch19
+  xpos 575
+  ypos 4761
+ }
+push $Nb7ea4000
+ Dot {
+  name Dot12
+  xpos 1021
+  ypos 4444
+ }
+set Nb7ea7000 [stack 0]
+ Defocus {
+  defocus {{parent.Blur5.size}}
+  quality {{parent.defocus_quality}}
+  name Defocus5
+  xpos 1106
+  ypos 4483
+ }
+push $Nb7ea7000
+ Blur {
+  size {{parent.size*pow(size_mult,4)}}
+  crop false
+  name Blur5
+  xpos 978
+  ypos 4487
+ }
+ Switch {
+  inputs 2
+  which {{parent.blur_type}}
+  name Switch11
+  xpos 978
+  ypos 4603
+ }
+ Unpremult {
+  name Unpremult5
+  xpos 975
+  ypos 4818
+ }
+ Keyer {
+  operation "luminance key"
+  range {0 0 1 1}
+  name Keyer3
+  xpos 975
+  ypos 4870
+ }
+ Premult {
+  name Premult5
+  xpos 975
+  ypos 4934
+ }
+ Merge2 {
+  inputs 2
+  name Merge3
+  xpos 575
+  ypos 4975
+ }
+set Nb7ea9800 [stack 0]
+ Dot {
+  name Dot9
+  label "\n5"
+  note_font_size 50
+  xpos 618
+  ypos 5679
+ }
+set Nb7ea9400 [stack 0]
+ Dot {
+  name Dot20
+  xpos 618
+  ypos 5845
+ }
+set Nb7ea9000 [stack 0]
+ Defocus {
+  defocus {{parent.Blur12.size}}
+  quality {{parent.defocus_quality}}
+  name Defocus13
+  xpos 692
+  ypos 5905
+ }
+push $Nb7ea9000
+ Blur {
+  size {{parent.size*parent.size_mult*parent.soften*5}}
+  crop false
+  name Blur12
+  xpos 575
+  ypos 5901
+ }
+ Switch {
+  inputs 2
+  which {{parent.blur_type}}
+  name Switch20
+  xpos 575
+  ypos 6004
+ }
+push $Nb7ea9400
+ Dot {
+  name Dot16
+  xpos 1021
+  ypos 5679
+ }
+set Nb7ea8400 [stack 0]
+ Defocus {
+  defocus {{parent.Blur7.size}}
+  quality {{parent.defocus_quality}}
+  name Defocus7
+  xpos 1104
+  ypos 5704
+ }
+push $Nb7ea8400
+ Blur {
+  size {{parent.size*pow(size_mult,5)}}
+  crop false
+  name Blur7
+  xpos 978
+  ypos 5708
+ }
+ Switch {
+  inputs 2
+  which {{parent.blur_type}}
+  name Switch14
+  xpos 978
+  ypos 5838
+ }
+ Unpremult {
+  name Unpremult7
+  xpos 975
+  ypos 6053
+ }
+ Keyer {
+  operation "luminance key"
+  range {0 0 1 1}
+  name Keyer4
+  xpos 975
+  ypos 6105
+ }
+ Premult {
+  name Premult7
+  xpos 975
+  ypos 6169
+ }
+ Merge2 {
+  inputs 2
+  name Merge4
+  xpos 575
+  ypos 6210
+ }
+set Nb7eaac00 [stack 0]
+ Dot {
+  name Dot13
+  label "\n6"
+  note_font_size 50
+  xpos 618
+  ypos 6934
+ }
+set Nb7eaa800 [stack 0]
+ Dot {
+  name Dot18
+  xpos 618
+  ypos 7100
+ }
+set Nb7eaa400 [stack 0]
+ Defocus {
+  defocus {{parent.Blur13.size}}
+  quality {{parent.defocus_quality}}
+  name Defocus14
+  xpos 703
+  ypos 7139
+ }
+push $Nb7eaa400
+ Blur {
+  size {{parent.size*parent.size_mult*parent.soften*6}}
+  crop false
+  name Blur13
+  xpos 575
+  ypos 7143
+ }
+ Switch {
+  inputs 2
+  which {{parent.blur_type}}
+  name Switch21
+  xpos 575
+  ypos 7259
+ }
+push $Nb7eaa800
+ Dot {
+  name Dot21
+  xpos 1021
+  ypos 6934
+ }
+set Nb7e9d800 [stack 0]
+ Defocus {
+  defocus {{parent.Blur14.size}}
+  quality {{parent.defocus_quality}}
+  name Defocus15
+  xpos 1106
+  ypos 6973
+ }
+push $Nb7e9d800
+ Blur {
+  size {{parent.size*pow(size_mult,6)}}
+  crop false
+  name Blur14
+  xpos 978
+  ypos 6977
+ }
+ Switch {
+  inputs 2
+  which {{parent.blur_type}}
+  name Switch22
+  xpos 978
+  ypos 7093
+ }
+ Unpremult {
+  name Unpremult2
+  xpos 975
+  ypos 7308
+ }
+ Keyer {
+  operation "luminance key"
+  range {0 0 1 1}
+  name Keyer5
+  xpos 975
+  ypos 7360
+ }
+ Premult {
+  name Premult2
+  xpos 975
+  ypos 7424
+ }
+ Merge2 {
+  inputs 2
+  name Merge5
+  xpos 575
+  ypos 7465
+ }
+set Nb7e9c000 [stack 0]
+ Dot {
+  name Dot17
+  label "\n7"
+  note_font_size 50
+  xpos 618
+  ypos 8308
+ }
+set Nb7e9fc00 [stack 0]
+ Dot {
+  name Dot24
+  xpos 618
+  ypos 8474
+ }
+set Nb7e9f800 [stack 0]
+ Defocus {
+  defocus {{parent.Blur16.size}}
+  quality {{parent.defocus_quality}}
+  name Defocus18
+  xpos 704
+  ypos 8513
+ }
+push $Nb7e9f800
+ Blur {
+  size {{parent.size*parent.size_mult*parent.soften*6}}
+  crop false
+  name Blur16
+  xpos 575
+  ypos 8517
+ }
+ Switch {
+  inputs 2
+  which {{parent.blur_type}}
+  name Switch25
+  xpos 575
+  ypos 8633
+ }
+push $Nb7e9fc00
+ Dot {
+  name Dot25
+  xpos 1021
+  ypos 8308
+ }
+set Nb7e9ec00 [stack 0]
+ Defocus {
+  defocus {{parent.Blur17.size}}
+  quality {{parent.defocus_quality}}
+  name Defocus19
+  xpos 1106
+  ypos 8347
+ }
+push $Nb7e9ec00
+ Blur {
+  size {{parent.size*pow(size_mult,7)}}
+  crop false
+  name Blur17
+  xpos 978
+  ypos 8351
+ }
+ Switch {
+  inputs 2
+  which {{parent.blur_type}}
+  name Switch26
+  xpos 978
+  ypos 8467
+ }
+ Unpremult {
+  name Unpremult4
+  xpos 975
+  ypos 8682
+ }
+ Keyer {
+  operation "luminance key"
+  range {0 0 1 1}
+  name Keyer6
+  xpos 975
+  ypos 8734
+ }
+ Premult {
+  name Premult4
+  xpos 975
+  ypos 8798
+ }
+ Merge2 {
+  inputs 2
+  name Merge6
+  xpos 575
+  ypos 8839
+ }
+set Nb7ea1400 [stack 0]
+ Dot {
+  name Dot22
+  label "\n8"
+  note_font_size 50
+  xpos 618
+  ypos 9595
+ }
+set Nb7ea1000 [stack 0]
+ Dot {
+  name Dot28
+  xpos 618
+  ypos 9761
+ }
+set Nb7ea0c00 [stack 0]
+ Defocus {
+  defocus {{parent.Blur19.size}}
+  quality {{parent.defocus_quality}}
+  name Defocus21
+  xpos 716
+  ypos 9795
+ }
+push $Nb7ea0c00
+ Blur {
+  size {{parent.size*parent.size_mult*parent.soften*parent.soften*8}}
+  crop false
+  name Blur19
+  xpos 575
+  ypos 9820
+ }
+ Switch {
+  inputs 2
+  which {{parent.blur_type}}
+  name Switch29
+  xpos 575
+  ypos 9920
+ }
+push $Nb7ea1000
+ Dot {
+  name Dot29
+  xpos 1021
+  ypos 9595
+ }
+set Nb7ea0000 [stack 0]
+ Defocus {
+  defocus {{parent.Blur20.size}}
+  quality {{parent.defocus_quality}}
+  name Defocus22
+  xpos 1110
+  ypos 9645
+ }
+push $Nb7ea0000
+ Blur {
+  size {{parent.size*pow(size_mult,8)}}
+  crop false
+  name Blur20
+  xpos 978
+  ypos 9648
+ }
+ Switch {
+  inputs 2
+  which {{parent.blur_type}}
+  name Switch30
+  xpos 978
+  ypos 9754
+ }
+ Unpremult {
+  name Unpremult6
+  xpos 975
+  ypos 9969
+ }
+ Keyer {
+  operation "luminance key"
+  range {0 0 1 1}
+  name Keyer7
+  xpos 975
+  ypos 10021
+ }
+ Premult {
+  name Premult6
+  xpos 975
+  ypos 10085
+ }
+ Merge2 {
+  inputs 2
+  name Merge7
+  xpos 575
+  ypos 10126
+ }
+set Nb7ea2800 [stack 0]
+ Dot {
+  name Dot26
+  label "\n9"
+  note_font_size 50
+  xpos 612
+  ypos 10945
+ }
+set Nb7ea2400 [stack 0]
+ Dot {
+  name Dot32
+  xpos 612
+  ypos 11111
+ }
+set Nb7ea2000 [stack 0]
+ Defocus {
+  defocus {{parent.Blur22.size}}
+  quality {{parent.defocus_quality}}
+  name Defocus24
+  xpos 698
+  ypos 11150
+ }
+push $Nb7ea2000
+ Blur {
+  size {{parent.size*parent.size_mult*parent.soften*9}}
+  crop false
+  name Blur22
+  xpos 569
+  ypos 11154
+ }
+ Switch {
+  inputs 2
+  which {{parent.blur_type}}
+  name Switch33
+  xpos 569
+  ypos 11303
+ }
+push $Nb7ea2400
+ Dot {
+  name Dot33
+  xpos 1015
+  ypos 10945
+ }
+set Nb7e95400 [stack 0]
+ Defocus {
+  defocus {{parent.Blur23.size}}
+  quality {{parent.defocus_quality}}
+  name Defocus25
+  xpos 1089
+  ypos 10984
+ }
+push $Nb7e95400
+ Blur {
+  size {{parent.size*pow(size_mult,9)}}
+  crop false
+  name Blur23
+  xpos 972
+  ypos 10988
+ }
+ Switch {
+  inputs 2
+  which {{parent.blur_type}}
+  name Switch34
+  xpos 972
+  ypos 11104
+ }
+ Unpremult {
+  name Unpremult8
+  xpos 969
+  ypos 11319
+ }
+ Keyer {
+  operation "luminance key"
+  range {0 0 1 1}
+  name Keyer8
+  xpos 969
+  ypos 11371
+ }
+ Premult {
+  name Premult8
+  xpos 969
+  ypos 11435
+ }
+ Merge2 {
+  inputs 2
+  name Merge8
+  xpos 569
+  ypos 11476
+ }
+set Nb7e97c00 [stack 0]
+ Dot {
+  name Dot30
+  label "\n10"
+  note_font_size 50
+  xpos 632
+  ypos 12277
+ }
+set Nb7e97800 [stack 0]
+ Dot {
+  name Dot36
+  xpos 632
+  ypos 12443
+ }
+set Nb7e97400 [stack 0]
+ Defocus {
+  defocus {{parent.Blur25.size}}
+  quality {{parent.defocus_quality}}
+  name Defocus27
+  xpos 718
+  ypos 12482
+ }
+push $Nb7e97400
+ Blur {
+  size {{parent.size*parent.size_mult*parent.soften*10}}
+  crop false
+  name Blur25
+  xpos 589
+  ypos 12486
+ }
+ Switch {
+  inputs 2
+  which {{parent.blur_type}}
+  name Switch37
+  xpos 589
+  ypos 12602
+ }
+push $Nb7e97800
+ Dot {
+  name Dot37
+  xpos 1035
+  ypos 12277
+ }
+set Nb7e96800 [stack 0]
+ Defocus {
+  defocus {{parent.Blur26.size}}
+  quality {{parent.defocus_quality}}
+  name Defocus28
+  xpos 1120
+  ypos 12316
+ }
+push $Nb7e96800
+ Blur {
+  size {{parent.size*pow(size_mult,10)}}
+  crop false
+  name Blur26
+  xpos 992
+  ypos 12320
+ }
+ Switch {
+  inputs 2
+  which {{parent.blur_type}}
+  name Switch38
+  xpos 992
+  ypos 12436
+ }
+ Unpremult {
+  name Unpremult9
+  xpos 989
+  ypos 12651
+ }
+ Keyer {
+  operation "luminance key"
+  range {0 0 1 1}
+  name Keyer9
+  xpos 989
+  ypos 12703
+ }
+ Premult {
+  name Premult9
+  xpos 989
+  ypos 12767
+ }
+ Merge2 {
+  inputs 2
+  name Merge9
+  xpos 589
+  ypos 12808
+ }
+push $Nb7e97c00
+push $Nb7ea2800
+push $Nb7ea1400
+push $Nb7e9c000
+push $Nb7eaac00
+push $Nb7ea9800
+push $Nb7ea4400
+push $Nb85c4400
+push $Nb85c9800
+push $Nb85ca800
+ Switch {
+  inputs 11
+  which {{parent.steps}}
+  name Switch4
+  xpos -1506
+  ypos 12808
+ }
+ CopyBBox {
+  inputs 2
+  name CopyBBox1
+  xpos -1506
+  ypos 12860
+ }
+ Output {
+  name Output1
+  tile_color 0xff0000ff
+  xpos -1506
+  ypos 14004
+ }
+push $Nb85c8000
+ Viewer {
+  inputs 2
+  center_fstop 0
+  gl_buffer_depth float
+  input_process false
+  viewerInputOrder "after viewer process"
+  name Viewer1
+  xpos -1506
+  ypos 14253
+ }
+end_group

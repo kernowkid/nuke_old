@@ -1,0 +1,486 @@
+set cut_paste_input [stack 0]
+version 10.0 v3
+push $cut_paste_input
+Group {
+ name LayeredBlur1
+ selected true
+ xpos -401
+ ypos 6
+ postage_stamp_frame 1001
+ addUserKnob {20 SpWeightedBlur}
+ addUserKnob {41 channels T Copy1.channels}
+ addUserKnob {26 ""}
+ addUserKnob {14 size t "Size of the largest blur kernel. All others are smaller." R 0 100}
+ size 100
+ addUserKnob {7 scale l "layer scale" t "Scales the blur layer kernels only."}
+ scale 0.5
+ addUserKnob {7 cw l "num layers" t "Number of layers to apply. Higher number equals greater center weight.\n" R 1 20}
+ cw 5
+ addUserKnob {7 brightness l gain t "Apply a gain to the resulting blur." R 0 5}
+ brightness 1
+ addUserKnob {6 copybbox l "copy bbox" t "copies the bbox from the input." +STARTLINE}
+ copybbox true
+ addUserKnob {6 effect_only l "effect only" t "Return the Blur without adding the input so you can composite it yourself." +STARTLINE}
+ effect_only true
+ addUserKnob {26 ""}
+ addUserKnob {41 maskChannelMask l mask -STARTLINE T Copy1.maskChannelMask}
+ addUserKnob {41 inject -STARTLINE T Copy1.inject}
+ addUserKnob {41 invert_mask l invert -STARTLINE T Copy1.invert_mask}
+ addUserKnob {41 fringe -STARTLINE T Copy1.fringe}
+ addUserKnob {41 unpremult l "(un)premult by" T Copy1.unpremult}
+ addUserKnob {41 invert_unpremult l invert -STARTLINE T Copy1.invert_unpremult}
+ addUserKnob {41 mix T Copy1.mix}
+ addUserKnob {20 custom_node_type_hidden_tab +HIDDEN +INVISIBLE}
+ addUserKnob {1 custom_node_type +HIDDEN}
+ custom_node_type SpWeightedBlur
+}
+ Input {
+  inputs 0
+  name Input
+  xpos 950
+  ypos -730
+ }
+ Dot {
+  name Dot1
+  xpos 984
+  ypos -414
+ }
+set Na38df400 [stack 0]
+ Dot {
+  name Dot2
+  xpos 3184
+  ypos -414
+ }
+ Dot {
+  name Dot3
+  xpos 3184
+  ypos 426
+ }
+ Dot {
+  name Dot5
+  xpos 1204
+  ypos 426
+ }
+set Na38de800 [stack 0]
+ Input {
+  inputs 0
+  name mask
+  xpos -40
+  ypos 422
+  number 1
+ }
+push $Na38df400
+ Dot {
+  name Dot4
+  xpos 214
+  ypos -414
+ }
+ Switch {
+  inputs 2
+  which {{"\[exists parent.input1]"}}
+  name Switch2
+  xpos 180
+  ypos 422
+ }
+push $Na38de800
+push $Na38df400
+ Dot {
+  name Dot7
+  xpos 984
+  ypos -270
+ }
+set N8e13fc00 [stack 0]
+ Blur {
+  size {{parent.size.w} {parent.size.h}}
+  crop false
+  name Blur1
+  xpos 400
+  ypos -112
+ }
+set N8e13f800 [stack 0]
+push $N8e13fc00
+ Blur {
+  size {{Blur1.size.w*parent.scale} {Blur1.size.h*parent.scale}}
+  crop false
+  name Blur2
+  xpos 510
+  ypos -112
+ }
+ Merge {
+  inputs 2
+  operation plus
+  also_merge all
+  name Plus10
+  xpos 510
+  ypos -58
+ }
+set N8e13f000 [stack 0]
+push $N8e13fc00
+ Blur {
+  size {{Blur2.size.w*parent.scale} {Blur2.size.h*parent.scale}}
+  crop false
+  name Blur3
+  xpos 620
+  ypos -112
+ }
+ Merge {
+  inputs 2
+  operation plus
+  also_merge all
+  name Plus11
+  xpos 620
+  ypos -58
+ }
+set N8e13e800 [stack 0]
+push $N8e13fc00
+ Blur {
+  size {{Blur3.size.w*parent.scale} {Blur3.size.h*parent.scale}}
+  crop false
+  name Blur4
+  xpos 730
+  ypos -112
+ }
+ Merge {
+  inputs 2
+  operation plus
+  also_merge all
+  name Plus12
+  xpos 730
+  ypos -58
+ }
+set N8e13e000 [stack 0]
+push $N8e13fc00
+ Blur {
+  size {{Blur4.size.w*parent.scale} {Blur4.size.h*parent.scale}}
+  crop false
+  name Blur5
+  xpos 840
+  ypos -112
+ }
+ Merge {
+  inputs 2
+  operation plus
+  also_merge all
+  name Plus13
+  xpos 840
+  ypos -58
+ }
+set N8e367800 [stack 0]
+push $N8e13fc00
+ Blur {
+  size {{Blur5.size.w*parent.scale} {Blur5.size.h*parent.scale}}
+  crop false
+  name Blur6
+  xpos 950
+  ypos -112
+ }
+ Merge {
+  inputs 2
+  operation plus
+  also_merge all
+  name Plus14
+  xpos 950
+  ypos -58
+ }
+set N8e367000 [stack 0]
+push $N8e13fc00
+ Blur {
+  size {{Blur6.size.w*parent.scale} {Blur6.size.h*parent.scale}}
+  crop false
+  name Blur7
+  xpos 1060
+  ypos -112
+ }
+ Merge {
+  inputs 2
+  operation plus
+  also_merge all
+  name Plus1
+  xpos 1060
+  ypos -58
+ }
+set N8e366800 [stack 0]
+push $N8e13fc00
+ Blur {
+  size {{Blur7.size.w*parent.scale} {Blur7.size.h*parent.scale}}
+  crop false
+  name Blur8
+  xpos 1170
+  ypos -112
+ }
+ Merge {
+  inputs 2
+  operation plus
+  also_merge all
+  name Plus2
+  xpos 1170
+  ypos -58
+ }
+set N8e366000 [stack 0]
+push $N8e13fc00
+ Blur {
+  size {{Blur8.size.w*parent.scale} {Blur8.size.h*parent.scale}}
+  crop false
+  name Blur9
+  xpos 1280
+  ypos -112
+ }
+ Merge {
+  inputs 2
+  operation plus
+  also_merge all
+  name Plus3
+  xpos 1280
+  ypos -58
+ }
+set N302f800 [stack 0]
+push $N8e13fc00
+ Blur {
+  size {{Blur9.size.w*parent.scale} {Blur9.size.h*parent.scale}}
+  crop false
+  name Blur10
+  xpos 1390
+  ypos -112
+ }
+ Merge {
+  inputs 2
+  operation plus
+  also_merge all
+  name Plus4
+  xpos 1390
+  ypos -58
+ }
+set N302f000 [stack 0]
+push $N8e13fc00
+ Blur {
+  size {{Blur10.size.w*parent.scale} {Blur10.size.h*parent.scale}}
+  crop false
+  name Blur11
+  xpos 1500
+  ypos -112
+ }
+ Merge {
+  inputs 2
+  operation plus
+  also_merge all
+  name Plus5
+  xpos 1500
+  ypos -58
+ }
+set N302e800 [stack 0]
+push $N8e13fc00
+ Blur {
+  size {{Blur11.size.w*parent.scale} {Blur11.size.h*parent.scale}}
+  crop false
+  name Blur12
+  xpos 1610
+  ypos -112
+ }
+ Merge {
+  inputs 2
+  operation plus
+  also_merge all
+  name Plus6
+  xpos 1610
+  ypos -58
+ }
+set N302e000 [stack 0]
+push $N8e13fc00
+ Blur {
+  size {{Blur12.size.w*parent.scale} {Blur12.size.h*parent.scale}}
+  crop false
+  name Blur13
+  xpos 1720
+  ypos -112
+ }
+ Merge {
+  inputs 2
+  operation plus
+  also_merge all
+  name Plus7
+  xpos 1720
+  ypos -58
+ }
+set N7a945800 [stack 0]
+push $N8e13fc00
+ Blur {
+  size {{Blur13.size.w*parent.scale} {Blur13.size.h*parent.scale}}
+  crop false
+  name Blur14
+  xpos 1830
+  ypos -112
+ }
+ Merge {
+  inputs 2
+  operation plus
+  also_merge all
+  name Plus8
+  xpos 1830
+  ypos -58
+ }
+set N7a945000 [stack 0]
+push $N8e13fc00
+ Blur {
+  size {{Blur14.size.w*parent.scale} {Blur14.size.h*parent.scale}}
+  crop false
+  name Blur15
+  xpos 1940
+  ypos -112
+ }
+ Merge {
+  inputs 2
+  operation plus
+  also_merge all
+  name Plus9
+  xpos 1940
+  ypos -58
+ }
+set N7a944800 [stack 0]
+push $N8e13fc00
+ Blur {
+  size {{Blur15.size.w*parent.scale} {Blur15.size.h*parent.scale}}
+  crop false
+  name Blur16
+  xpos 2050
+  ypos -112
+ }
+ Merge {
+  inputs 2
+  operation plus
+  also_merge all
+  name Plus15
+  xpos 2050
+  ypos -58
+ }
+set N7a944000 [stack 0]
+push $N8e13fc00
+ Blur {
+  size {{Blur16.size.w*parent.scale} {Blur16.size.h*parent.scale}}
+  crop false
+  name Blur17
+  xpos 2160
+  ypos -112
+ }
+ Merge {
+  inputs 2
+  operation plus
+  also_merge all
+  name Plus16
+  xpos 2160
+  ypos -58
+ }
+set N81865800 [stack 0]
+push $N8e13fc00
+ Blur {
+  size {{Blur17.size.w*parent.scale} {Blur17.size.h*parent.scale}}
+  crop false
+  name Blur18
+  xpos 2270
+  ypos -112
+ }
+ Merge {
+  inputs 2
+  operation plus
+  also_merge all
+  name Plus17
+  xpos 2270
+  ypos -58
+ }
+set N81865000 [stack 0]
+push $N8e13fc00
+ Blur {
+  size {{Blur18.size.w*parent.scale} {Blur18.size.h*parent.scale}}
+  crop false
+  name Blur19
+  xpos 2380
+  ypos -112
+ }
+ Merge {
+  inputs 2
+  operation plus
+  also_merge all
+  name Plus18
+  xpos 2380
+  ypos -58
+ }
+set N81864800 [stack 0]
+push $N8e13fc00
+ Blur {
+  size {{Blur19.size.w*parent.scale} {Blur19.size.h*parent.scale}}
+  crop false
+  name Blur20
+  xpos 2490
+  ypos -112
+ }
+ Merge {
+  inputs 2
+  operation plus
+  also_merge all
+  name Plus19
+  xpos 2490
+  ypos -58
+ }
+push $N81864800
+push $N81865000
+push $N81865800
+push $N7a944000
+push $N7a944800
+push $N7a945000
+push $N7a945800
+push $N302e000
+push $N302e800
+push $N302f000
+push $N302f800
+push $N8e366000
+push $N8e366800
+push $N8e367000
+push $N8e367800
+push $N8e13e000
+push $N8e13e800
+push 0
+push $N8e13f000
+push $N8e13f800
+ Dissolve {
+  inputs 20+1
+  which {{parent.cw-1}}
+  name Dissolve1
+  xpos 840
+  ypos 176
+ }
+ Multiply {
+  value {{"parent.brightness * (1.0 / parent.cw)"}}
+  name Multiply16
+  xpos 840
+  ypos 241
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  also_merge all
+  name Merge1
+  xpos 840
+  ypos 326
+  disable {{parent.effect_only}}
+ }
+push $Na38de800
+ Copy {
+  inputs 2+1
+  channels rgba
+  maskChannelMask none
+  name Copy1
+  xpos 840
+  ypos 410
+ }
+ CopyBBox {
+  inputs 2
+  name CopyBBox1
+  xpos 840
+  ypos 542
+  disable {{1-parent.copybbox}}
+ }
+ Output {
+  name Output1
+  xpos 840
+  ypos 830
+ }
+end_group

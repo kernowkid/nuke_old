@@ -1,0 +1,131 @@
+set cut_paste_input [stack 0]
+version 10.0 v4
+push 0
+push $cut_paste_input
+Group {
+ inputs 2
+ name Barry_White
+ note_font "Bitstream Vera Sans"
+ selected true
+ xpos 1968
+ ypos 365
+ mapsize {0.15 0.15}
+ addUserKnob {20 User}
+ addUserKnob {26 description l "" +STARTLINE T "There's people making babies to my music. That's nice. - Barry White"}
+ addUserKnob {26 ""}
+ addUserKnob {26 description_1 l "" +STARTLINE T "Input 1 - grade\nInput 2 - original BG"}
+ addUserKnob {41 size l Blur t "Blurs both Inputs" T Blur1.size}
+ addUserKnob {41 mix l Mult t "Multiply softened version with original" T Merge11.mix}
+ addUserKnob {41 which l Mix t "Mix back original" T Dissolve1.which}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -613
+  ypos 468
+ }
+set Nb85c1800 [stack 0]
+push $Nb85c1800
+ Log2Lin {
+  operation lin2log
+  name Log2Lin4
+  xpos -794
+  ypos 539
+ }
+ Blur {
+  channels rgba
+  size 5.6
+  name Blur1
+  label "Size \[value size]"
+  xpos -794
+  ypos 567
+ }
+ set Cb85be000 [stack 0]
+ Log2Lin {
+  name Log2Lin3
+  xpos -794
+  ypos 611
+ }
+ Input {
+  inputs 0
+  name Input2
+  xpos -977
+  ypos 454
+  number 1
+ }
+ Dot {
+  name Dot4
+  xpos -943
+  ypos 539
+ }
+set Nb85bec00 [stack 0]
+ Log2Lin {
+  operation lin2log
+  name Log2Lin1
+  xpos -886
+  ypos 535
+ }
+clone $Cb85be000 {
+  xpos -886
+  ypos 567
+  selected false
+ }
+ Log2Lin {
+  name Log2Lin2
+  xpos -886
+  ypos 612
+ }
+ Merge2 {
+  inputs 2
+  operation divide
+  name Merge10
+  xpos -794
+  ypos 696
+ }
+set Nb85bfc00 [stack 0]
+push $Nb85bfc00
+push $Nb85bec00
+ Merge2 {
+  inputs 2
+  operation multiply
+  mix 0.5
+  name Merge11
+  xpos -977
+  ypos 733
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy1
+  xpos -977
+  ypos 781
+  postage_stamp_frame 1001
+ }
+set Nb85bc400 [stack 0]
+ Dissolve {
+  inputs 2
+  which 0.195
+  name Dissolve1
+  xpos -613
+  ypos 845
+ }
+ Output {
+  name Output1
+  xpos -613
+  ypos 925
+ }
+push $Nb85c1800
+push $Nb85bc400
+ Viewer {
+  inputs 2
+  frame_range 1001-1066
+  input_number 1
+  center_fstop 0
+  gl_buffer_depth float
+  viewerInputOrder "after viewer process"
+  name Viewer1
+  xpos -1169
+  ypos 522
+ }
+end_group

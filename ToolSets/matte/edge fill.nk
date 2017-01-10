@@ -1,0 +1,1346 @@
+set cut_paste_input [stack 0]
+version 10.0 v4
+push $cut_paste_input
+Group {
+ name EdgeFill_achang1
+ selected true
+ xpos 1974
+ ypos 414
+ addUserKnob {20 EdgeFill}
+ addUserKnob {4 view M {result "healthy source" "fill only" ""}}
+ view "fill only"
+ addUserKnob {7 EatIn l "Eat In" R 0 50}
+ EatIn 3.4
+ addUserKnob {7 Quality R 1 10}
+ Quality 10
+ addUserKnob {26 ""}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 289
+  ypos 413
+ }
+ Dot {
+  name Dot30
+  xpos 323
+  ypos 441
+ }
+set Nb7ed6800 [stack 0]
+push $Nb7ed6800
+ Unpremult {
+  name Unpremult6
+  xpos -26
+  ypos 436
+ }
+ Dilate {
+  channels alpha
+  size {{-parent.EatIn i}}
+  name Dilate1
+  xpos -26
+  ypos 464
+ }
+ Premult {
+  name Premult3
+  xpos -26
+  ypos 506
+ }
+set Nb7ed7400 [stack 0]
+ Dot {
+  name Dot29
+  xpos 213
+  ypos 546
+ }
+ Dot {
+  name Dot22
+  xpos 213
+  ypos 3003
+ }
+set Nb7ed7c00 [stack 0]
+push $Nb7ed7400
+ Dot {
+  name Dot14
+  xpos -248
+  ypos 509
+ }
+set Nb7ed4000 [stack 0]
+push $Nb7ed4000
+ Erode {
+  size {{-((parent.EatIn/parent.Quality)+1) i}}
+  blur 1
+  name Erode3
+  xpos -381
+  ypos 558
+ }
+push $Nb7ed4000
+ Blur {
+  channels rgba
+  size {{(parent.EatIn/parent.Quality)+1 i}}
+  name Blur1
+  xpos -483
+  ypos 504
+ }
+ Unpremult {
+  name Unpremult3
+  xpos -483
+  ypos 532
+ }
+ Copy {
+  inputs 2
+  from0 -rgba.alpha
+  to0 -rgba.alpha
+  channels alpha
+  name Copy1
+  xpos -483
+  ypos 560
+ }
+ Premult {
+  name Premult1
+  xpos -483
+  ypos 616
+ }
+ Merge2 {
+  inputs 2
+  name Merge1
+  xpos -282
+  ypos 616
+ }
+ Dot {
+  name Dot1
+  xpos -248
+  ypos 656
+ }
+set Nb7ed5c00 [stack 0]
+push $Nb7ed5c00
+ Erode {
+  size {{-((parent.EatIn/parent.Quality)+1) i}}
+  blur 1
+  name Erode2
+  xpos -385
+  ypos 707
+ }
+push $Nb7ed5c00
+ Blur {
+  channels rgba
+  size {{(parent.EatIn/parent.Quality)+1 i}}
+  name Blur2
+  xpos -479
+  ypos 651
+ }
+ Unpremult {
+  name Unpremult4
+  xpos -479
+  ypos 679
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy2
+  xpos -479
+  ypos 707
+ }
+ Premult {
+  name Premult2
+  xpos -479
+  ypos 749
+ }
+ Merge2 {
+  inputs 2
+  name Merge2
+  xpos -282
+  ypos 749
+ }
+ Dot {
+  name Dot2
+  xpos -248
+  ypos 777
+ }
+set Nb7ed3800 [stack 0]
+push $Nb7ed3800
+ Erode {
+  size {{-((parent.EatIn/parent.Quality)+1) i}}
+  blur 1
+  name Erode4
+  xpos -382
+  ypos 828
+ }
+push $Nb7ed3800
+ Blur {
+  channels rgba
+  size {{(parent.EatIn/parent.Quality)+1 i}}
+  name Blur3
+  xpos -479
+  ypos 772
+ }
+ Unpremult {
+  name Unpremult7
+  xpos -479
+  ypos 800
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy5
+  xpos -479
+  ypos 828
+ }
+ Premult {
+  name Premult4
+  xpos -479
+  ypos 870
+ }
+ Merge2 {
+  inputs 2
+  name Merge3
+  xpos -282
+  ypos 870
+ }
+ Dot {
+  name Dot3
+  xpos -248
+  ypos 898
+ }
+set Nb7ee1400 [stack 0]
+push $Nb7ee1400
+ Erode {
+  size {{-((parent.EatIn/parent.Quality)+1) i}}
+  blur 1
+  name Erode5
+  xpos -381
+  ypos 949
+ }
+push $Nb7ee1400
+ Blur {
+  channels rgba
+  size {{(parent.EatIn/parent.Quality)+1 i}}
+  name Blur4
+  xpos -479
+  ypos 893
+ }
+ Unpremult {
+  name Unpremult8
+  xpos -479
+  ypos 921
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy6
+  xpos -479
+  ypos 949
+ }
+ Premult {
+  name Premult7
+  xpos -479
+  ypos 991
+ }
+ Merge2 {
+  inputs 2
+  name Merge4
+  xpos -282
+  ypos 991
+ }
+ Dot {
+  name Dot4
+  xpos -248
+  ypos 1019
+ }
+set Nb7edf000 [stack 0]
+push $Nb7edf000
+ Erode {
+  size {{-((parent.EatIn/parent.Quality)+1) i}}
+  blur 1
+  name Erode6
+  xpos -380
+  ypos 1070
+ }
+push $Nb7edf000
+ Blur {
+  channels rgba
+  size {{(parent.EatIn/parent.Quality)+1 i}}
+  name Blur5
+  xpos -479
+  ypos 1014
+ }
+ Unpremult {
+  name Unpremult9
+  xpos -479
+  ypos 1042
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy7
+  xpos -479
+  ypos 1070
+ }
+ Premult {
+  name Premult8
+  xpos -479
+  ypos 1112
+ }
+ Merge2 {
+  inputs 2
+  name Merge5
+  xpos -282
+  ypos 1112
+ }
+ Dot {
+  name Dot5
+  xpos -248
+  ypos 1140
+ }
+set Nb7edcc00 [stack 0]
+push $Nb7edcc00
+ Erode {
+  size {{-((parent.EatIn/parent.Quality)+1) i}}
+  blur 1
+  name Erode7
+  xpos -382
+  ypos 1191
+ }
+push $Nb7edcc00
+ Blur {
+  channels rgba
+  size {{(parent.EatIn/parent.Quality)+1 i}}
+  name Blur7
+  xpos -479
+  ypos 1135
+ }
+ Unpremult {
+  name Unpremult10
+  xpos -479
+  ypos 1163
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy8
+  xpos -479
+  ypos 1191
+ }
+ Premult {
+  name Premult9
+  xpos -479
+  ypos 1233
+ }
+ Merge2 {
+  inputs 2
+  name Merge6
+  xpos -282
+  ypos 1233
+ }
+ Dot {
+  name Dot6
+  xpos -248
+  ypos 1261
+ }
+set Nb7eda800 [stack 0]
+push $Nb7eda800
+ Erode {
+  size {{-((parent.EatIn/parent.Quality)+1)}}
+  blur 1
+  name Erode8
+  xpos -382
+  ypos 1312
+ }
+push $Nb7eda800
+ Blur {
+  channels rgba
+  size {{(parent.EatIn/parent.Quality)+1 i}}
+  name Blur8
+  xpos -479
+  ypos 1256
+ }
+ Unpremult {
+  name Unpremult11
+  xpos -479
+  ypos 1284
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy9
+  xpos -479
+  ypos 1312
+ }
+ Premult {
+  name Premult10
+  xpos -479
+  ypos 1354
+ }
+ Merge2 {
+  inputs 2
+  name Merge7
+  xpos -282
+  ypos 1354
+ }
+ Dot {
+  name Dot7
+  xpos -248
+  ypos 1382
+ }
+set Nb7ee8400 [stack 0]
+push $Nb7ee8400
+ Erode {
+  size {{-((parent.EatIn/parent.Quality)+1) i}}
+  blur 1
+  name Erode9
+  xpos -380
+  ypos 1433
+ }
+push $Nb7ee8400
+ Blur {
+  channels rgba
+  size {{(parent.EatIn/parent.Quality)+1 i}}
+  name Blur10
+  xpos -479
+  ypos 1377
+ }
+ Unpremult {
+  name Unpremult12
+  xpos -479
+  ypos 1405
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy10
+  xpos -479
+  ypos 1433
+ }
+ Premult {
+  name Premult11
+  xpos -479
+  ypos 1475
+ }
+ Merge2 {
+  inputs 2
+  name Merge8
+  xpos -282
+  ypos 1475
+ }
+ Dot {
+  name Dot8
+  xpos -248
+  ypos 1503
+ }
+set Nb7ee6000 [stack 0]
+push $Nb7ee6000
+ Erode {
+  size {{-((parent.EatIn/parent.Quality)+1) i}}
+  blur 1
+  name Erode10
+  xpos -381
+  ypos 1554
+ }
+push $Nb7ee6000
+ Blur {
+  channels rgba
+  size {{(parent.EatIn/parent.Quality)+1 i}}
+  name Blur11
+  xpos -479
+  ypos 1498
+ }
+ Unpremult {
+  name Unpremult13
+  xpos -479
+  ypos 1526
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy11
+  xpos -479
+  ypos 1554
+ }
+ Premult {
+  name Premult12
+  xpos -479
+  ypos 1596
+ }
+ Merge2 {
+  inputs 2
+  name Merge10
+  xpos -282
+  ypos 1596
+ }
+ Dot {
+  name Dot9
+  xpos -248
+  ypos 1624
+ }
+set Nb7ee7c00 [stack 0]
+push $Nb7ee7c00
+ Erode {
+  size {{-((parent.EatIn/parent.Quality)+1) i}}
+  blur 1
+  name Erode11
+  xpos -381
+  ypos 1675
+ }
+push $Nb7ee7c00
+ Blur {
+  channels rgba
+  size {{(parent.EatIn/parent.Quality)+1 i}}
+  name Blur12
+  xpos -479
+  ypos 1619
+ }
+ Unpremult {
+  name Unpremult14
+  xpos -479
+  ypos 1647
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy12
+  xpos -479
+  ypos 1675
+ }
+ Premult {
+  name Premult13
+  xpos -479
+  ypos 1717
+ }
+ Merge2 {
+  inputs 2
+  name Merge11
+  xpos -282
+  ypos 1717
+ }
+ Dot {
+  name Dot10
+  xpos -248
+  ypos 1745
+ }
+set Nb7ee5800 [stack 0]
+push $Nb7ee5800
+ Erode {
+  size {{-((parent.EatIn/parent.Quality)+1) i}}
+  blur 1
+  name Erode12
+  xpos -381
+  ypos 1796
+ }
+push $Nb7ee5800
+ Blur {
+  channels rgba
+  size {{(parent.EatIn/parent.Quality)+1 i}}
+  name Blur13
+  xpos -479
+  ypos 1740
+ }
+ Unpremult {
+  name Unpremult15
+  xpos -479
+  ypos 1768
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy13
+  xpos -479
+  ypos 1796
+ }
+ Premult {
+  name Premult14
+  xpos -479
+  ypos 1838
+ }
+ Merge2 {
+  inputs 2
+  name Merge14
+  xpos -282
+  ypos 1838
+ }
+ Dot {
+  name Dot11
+  xpos -248
+  ypos 1866
+ }
+set Nb7ee3400 [stack 0]
+push $Nb7ee3400
+ Erode {
+  size {{-((parent.EatIn/parent.Quality)+1) i}}
+  blur 1
+  name Erode13
+  xpos -382
+  ypos 1917
+ }
+push $Nb7ee3400
+ Blur {
+  channels rgba
+  size {{(parent.EatIn/parent.Quality)+1 i}}
+  name Blur14
+  xpos -479
+  ypos 1861
+ }
+ Unpremult {
+  name Unpremult16
+  xpos -479
+  ypos 1889
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy14
+  xpos -479
+  ypos 1917
+ }
+ Premult {
+  name Premult15
+  xpos -479
+  ypos 1959
+ }
+ Merge2 {
+  inputs 2
+  name Merge15
+  xpos -282
+  ypos 1959
+ }
+ Dot {
+  name Dot12
+  xpos -248
+  ypos 1987
+ }
+set Nb859a800 [stack 0]
+push $Nb859a800
+ Erode {
+  size {{-((parent.EatIn/parent.Quality)+1) i}}
+  blur 1
+  name Erode14
+  xpos -381
+  ypos 2038
+ }
+push $Nb859a800
+ Blur {
+  channels rgba
+  size {{(parent.EatIn/parent.Quality)+1 i}}
+  name Blur15
+  xpos -479
+  ypos 1982
+ }
+ Unpremult {
+  name Unpremult17
+  xpos -479
+  ypos 2010
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy15
+  xpos -479
+  ypos 2038
+ }
+ Premult {
+  name Premult16
+  xpos -479
+  ypos 2080
+ }
+ Merge2 {
+  inputs 2
+  name Merge16
+  xpos -282
+  ypos 2080
+ }
+ Dot {
+  name Dot13
+  xpos -248
+  ypos 2108
+ }
+set Nb8598400 [stack 0]
+push $Nb8598400
+ Erode {
+  size {{-((parent.EatIn/parent.Quality)+1)}}
+  blur 1
+  name Erode15
+  xpos -380
+  ypos 2159
+ }
+push $Nb8598400
+ Blur {
+  channels rgba
+  size {{(parent.EatIn/parent.Quality)+1 i}}
+  name Blur16
+  xpos -479
+  ypos 2103
+ }
+ Unpremult {
+  name Unpremult18
+  xpos -479
+  ypos 2131
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy16
+  xpos -479
+  ypos 2159
+ }
+ Premult {
+  name Premult17
+  xpos -479
+  ypos 2201
+ }
+ Merge2 {
+  inputs 2
+  name Merge17
+  xpos -282
+  ypos 2201
+ }
+ Dot {
+  name Dot15
+  xpos -248
+  ypos 2229
+ }
+set Nb8596000 [stack 0]
+push $Nb8596000
+ Erode {
+  size {{-((parent.EatIn/parent.Quality)+1) i}}
+  blur 1
+  name Erode16
+  xpos -380
+  ypos 2280
+ }
+push $Nb8596000
+ Blur {
+  channels rgba
+  size {{(parent.EatIn/parent.Quality)+1 i}}
+  name Blur17
+  xpos -479
+  ypos 2224
+ }
+ Unpremult {
+  name Unpremult19
+  xpos -479
+  ypos 2252
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy17
+  xpos -479
+  ypos 2280
+ }
+ Premult {
+  name Premult18
+  xpos -479
+  ypos 2322
+ }
+ Merge2 {
+  inputs 2
+  name Merge18
+  xpos -282
+  ypos 2322
+ }
+ Dot {
+  name Dot16
+  xpos -248
+  ypos 2350
+ }
+set Nb8597c00 [stack 0]
+push $Nb8597c00
+ Erode {
+  size {{-((parent.EatIn/parent.Quality)+1) i}}
+  blur 1
+  name Erode17
+  xpos -383
+  ypos 2401
+ }
+push $Nb8597c00
+ Blur {
+  channels rgba
+  size {{(parent.EatIn/parent.Quality)+1 i}}
+  name Blur18
+  xpos -479
+  ypos 2345
+ }
+ Unpremult {
+  name Unpremult20
+  xpos -479
+  ypos 2373
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy18
+  xpos -479
+  ypos 2401
+ }
+ Premult {
+  name Premult19
+  xpos -479
+  ypos 2443
+ }
+ Merge2 {
+  inputs 2
+  name Merge19
+  xpos -282
+  ypos 2443
+ }
+ Dot {
+  name Dot17
+  xpos -248
+  ypos 2471
+ }
+set Nb85a5800 [stack 0]
+push $Nb85a5800
+ Erode {
+  size {{-((parent.EatIn/parent.Quality)+1) i}}
+  blur 1
+  name Erode1
+  xpos -381
+  ypos 2522
+ }
+push $Nb85a5800
+ Blur {
+  channels rgba
+  size {{(parent.EatIn/parent.Quality)+1 i}}
+  name Blur6
+  xpos -479
+  ypos 2466
+ }
+ Unpremult {
+  name Unpremult2
+  xpos -479
+  ypos 2494
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy4
+  xpos -479
+  ypos 2522
+ }
+ Premult {
+  name Premult6
+  xpos -479
+  ypos 2564
+ }
+ Merge2 {
+  inputs 2
+  name Merge9
+  xpos -282
+  ypos 2564
+ }
+ Dot {
+  name Dot18
+  xpos -248
+  ypos 2592
+ }
+set Nb85a3400 [stack 0]
+push $Nb85a3400
+ Erode {
+  size {{-((parent.EatIn/parent.Quality)+1) i}}
+  blur 1
+  name Erode18
+  xpos -380
+  ypos 2643
+ }
+push $Nb85a3400
+ Blur {
+  channels rgba
+  size {{(parent.EatIn/parent.Quality)+1 i}}
+  name Blur19
+  xpos -479
+  ypos 2587
+ }
+ Unpremult {
+  name Unpremult21
+  xpos -479
+  ypos 2615
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy19
+  xpos -479
+  ypos 2643
+ }
+ Premult {
+  name Premult20
+  xpos -479
+  ypos 2685
+ }
+ Merge2 {
+  inputs 2
+  name Merge20
+  xpos -282
+  ypos 2685
+ }
+ Dot {
+  name Dot19
+  xpos -248
+  ypos 2713
+ }
+set Nb85a1000 [stack 0]
+push $Nb85a1000
+ Erode {
+  size {{-((parent.EatIn/parent.Quality)+1) i}}
+  blur 1
+  name Erode19
+  xpos -379
+  ypos 2764
+ }
+push $Nb85a1000
+ Blur {
+  channels rgba
+  size {{(parent.EatIn/parent.Quality)+1 i}}
+  name Blur20
+  xpos -479
+  ypos 2708
+ }
+ Unpremult {
+  name Unpremult22
+  xpos -479
+  ypos 2736
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy20
+  xpos -479
+  ypos 2764
+ }
+ Premult {
+  name Premult21
+  xpos -479
+  ypos 2806
+ }
+ Merge2 {
+  inputs 2
+  name Merge21
+  xpos -282
+  ypos 2806
+ }
+ Dot {
+  name Dot20
+  xpos -248
+  ypos 2834
+ }
+set Nb859ec00 [stack 0]
+push $Nb859ec00
+ Erode {
+  size {{-((parent.EatIn/parent.Quality)+1) i}}
+  blur 1
+  name Erode20
+  xpos -381
+  ypos 2885
+ }
+push $Nb859ec00
+ Blur {
+  channels rgba
+  size {{(parent.EatIn/parent.Quality)+1 i}}
+  name Blur21
+  xpos -479
+  ypos 2829
+ }
+ Unpremult {
+  name Unpremult23
+  xpos -479
+  ypos 2857
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy21
+  xpos -479
+  ypos 2885
+ }
+ Premult {
+  name Premult22
+  xpos -479
+  ypos 2927
+ }
+ Merge2 {
+  inputs 2
+  name Merge22
+  xpos -282
+  ypos 2927
+ }
+ Dot {
+  name Dot21
+  xpos -248
+  ypos 2955
+ }
+push $Nb859ec00
+push $Nb85a1000
+push $Nb85a3400
+push $Nb85a5800
+push $Nb8597c00
+push $Nb8596000
+push $Nb8598400
+push $Nb859a800
+push $Nb7ee3400
+push $Nb7ee5800
+push $Nb7ee7c00
+push $Nb7ee6000
+push $Nb7ee8400
+push $Nb7eda800
+push $Nb7edcc00
+push $Nb7edf000
+push $Nb7ee1400
+push $Nb7ed3800
+push $Nb7ed5c00
+push $Nb7ed4000
+ Switch {
+  inputs 21
+  which {{parent.Quality*2 i}}
+  name Switch2
+  xpos -47
+  ypos 2950
+ }
+set Ne3d22400 [stack 0]
+push $Ne3d22400
+ Dot {
+  name Dot28
+  xpos 63
+  ypos 2955
+ }
+ Blur {
+  channels rgba
+  size {{parent.EatIn}}
+  name Blur9
+  xpos 29
+  ypos 2973
+ }
+ Unpremult {
+  name Unpremult5
+  xpos 29
+  ypos 3001
+ }
+ Merge2 {
+  inputs 2
+  name Merge12
+  xpos 29
+  ypos 3054
+ }
+set Nb85ad800 [stack 0]
+ Dot {
+  name Dot23
+  xpos 63
+  ypos 3096
+ }
+set Nb85adc00 [stack 0]
+ Merge2 {
+  inputs 2
+  name Merge13
+  xpos 179
+  ypos 3082
+ }
+ Shuffle {
+  alpha black
+  name Shuffle1
+  xpos 179
+  ypos 3110
+ }
+ Copy {
+  inputs 2
+  from0 -rgba.alpha
+  to0 -rgba.alpha
+  channels alpha
+  bbox A
+  name Copy3
+  xpos 289
+  ypos 3096
+ }
+set Nb85aa800 [stack 0]
+push $Nb7ed7c00
+push $Nb85adc00
+ Merge2 {
+  inputs 2
+  operation stencil
+  name Merge23
+  xpos 29
+  ypos 3152
+ }
+ Merge2 {
+  inputs 2
+  operation mask
+  name Merge24
+  xpos 29
+  ypos 3180
+ }
+push $Nb7ed7400
+ Unpremult {
+  name Unpremult1
+  xpos 406
+  ypos 506
+ }
+push $Nb85aa800
+ Premult {
+  name Premult5
+  xpos 289
+  ypos 3159
+ }
+ Switch {
+  inputs 3
+  which {{parent.view}}
+  name Switch1
+  xpos 406
+  ypos 3180
+ }
+ Output {
+  name Output1
+  xpos 406
+  ypos 3226
+ }
+push $Nb85ad800
+ woz_SampledGrain {  name woz_SampledGrain1
+  note_font "Bitstream Vera Sans"
+  selected true
+  xpos -93
+  ypos 3092
+  disable true
+  amount {0.8 0.6 1}
+  response_curve 0
+  weight {master {curve C 1 1}
+    red {curve C k 0.06825351715 s0 S x0.02038915828 0.06825351715 x0.05301605165 0.146532774 x0.113490358 0.2028177977 x0.2067675591 0.2327821851 x0.3377979398 0.3559696674 x0.4516678154 0.3959222734 x2.575448513 0.7209094763 s0}
+    green {curve C k 0.08652031422 s0 S x0.01975706592 0.08652031422 x0.06002568454 0.1404064894 x0.1249111295 0.2418224514 x0.2272428274 0.3004345894 x0.3713901937 0.3502374291 x0.5080040097 0.4315089881 x2.590501308 1.0420928 s0}
+    blue {curve x0.001219927799 0.06949198246 s0 x0.007348543033 0.07457503676 x0.02075427771 0.1140499115 x0.06008252501 0.1341432631 x0.124676384 0.1596879959 x0.2256324887 0.2218938619 x0.3742266893 0.2554758787 x0.5137215257 0.2946259379 x2.652164459 0.5604643822 s0}}
+  maskChannelMask rgba.alpha
+  maskChannelInput none
+  unpremult none
+
+  xpos -93
+  ypos 3092
+  selected true
+  disable true
+
+  xpos -135
+  ypos 3066
+  selected false
+  disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+ xpos -135
+ ypos 3066
+ selected false
+ disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+xpos -135
+ypos 3066
+selected false
+disable true
+
+  xpos -135
+  ypos 3066
+  selected false
+  disable true
+ 
+xpos -135
+ypos 3066
+selected false
+disable true
+
+  xpos -135
+  ypos 3066
+  selected false
+  disable true
+ }
+end_group

@@ -1,0 +1,49 @@
+set cut_paste_input [stack 0]
+version 10.0 v3
+BackdropNode {
+ inputs 0
+ name BackdropNode8
+ tile_color 0xaaaaaa00
+ label "Rand num gen"
+ note_font_size 42
+ selected true
+ xpos 152
+ ypos -1099
+ bdwidth 329
+ bdheight 218
+}
+push $cut_paste_input
+NoOp {
+ name RandNum
+ selected true
+ xpos 178
+ ypos -922
+ addUserKnob {20 RandNum}
+ addUserKnob {7 seed t "Seed value for random number." R 0 100000}
+ seed 9500
+ addUserKnob {7 frequency t "# of oscillations per frame." R 0 10}
+ frequency 0.2
+ addUserKnob {7 amplitude t "range of the random values" R 0 10}
+ amplitude 0.22
+ addUserKnob {7 offset t "amount to offset the random values. " R -5 5}
+ offset 0.8
+ addUserKnob {26 unnamed l "" +STARTLINE}
+ addUserKnob {7 random_value t "this is the random value to link to"}
+ random_value {{(random(seed,frame*frequency)*amplitude)+offset}}
+}
+NoOp {
+ inputs 0
+ name flickerValue
+ selected true
+ xpos 177
+ ypos -989
+ addUserKnob {20 User}
+ addUserKnob {7 random_value}
+ random_value {{(random(1,frame*amplitude)*frequency)+offset}}
+ addUserKnob {7 amplitude}
+ amplitude 0.12
+ addUserKnob {7 offset R -5 5}
+ offset 0.7
+ addUserKnob {7 frequency R -5 5}
+ frequency 0.4
+}

@@ -1,0 +1,69 @@
+set cut_paste_input [stack 0]
+version 10.0 v3
+push $cut_paste_input
+IBKColourV3 {
+ name IBKColourV3_4
+ selected true
+ xpos 134
+ ypos -461
+ postage_stamp_frame 1001
+ Size 1
+ off {-0.004999999888 0.002000000095 -0.02400000021}
+ mult {1.058500051 1.149999976 1.019999981}
+ erode 15
+}
+IBKColourV3 {
+ name IBKColourV3_5
+ selected true
+ xpos 134
+ ypos -421
+ postage_stamp_frame 1001
+ Size 1
+ off {{IBKColourV3_4.off.r} {IBKColourV3_4.off.g} {IBKColourV3_4.off.b}}
+ mult {{parent.IBKColourV3_4.mult} {parent.IBKColourV3_4.mult} {parent.IBKColourV3_4.mult}}
+ multi 2
+}
+IBKColourV3 {
+ name IBKColourV3_6
+ selected true
+ xpos 134
+ ypos -395
+ postage_stamp_frame 1001
+ Size 1
+ off {{parent.IBKColourV3_4.off} {parent.IBKColourV3_4.off} {parent.IBKColourV3_4.off}}
+ mult {{parent.IBKColourV3_4.mult} {parent.IBKColourV3_4.mult} {parent.IBKColourV3_4.mult}}
+ multi 4
+}
+IBKColourV3 {
+ name IBKColourV3_7
+ selected true
+ xpos 139
+ ypos -356
+ postage_stamp_frame 1001
+ Size 1
+ off {{parent.IBKColourV3_4.off} {parent.IBKColourV3_4.off} {parent.IBKColourV3_4.off}}
+ mult {{parent.IBKColourV3_4.mult} {parent.IBKColourV3_4.mult} {parent.IBKColourV3_4.mult}}
+ multi 8
+}
+IBKColourV3 {
+ name IBKColourV3_8
+ selected true
+ xpos 139
+ ypos -322
+ postage_stamp_frame 1001
+ Size 1
+ off {{parent.IBKColourV3_4.off} {parent.IBKColourV3_4.off} {parent.IBKColourV3_4.off}}
+ mult {{parent.IBKColourV3_4.mult} {parent.IBKColourV3_4.mult} {parent.IBKColourV3_4.mult}}
+ multi 16
+}
+IBKColourV3 {
+ name IBKColourV3_9
+ selected true
+ xpos 139
+ ypos -296
+ postage_stamp_frame 1001
+ Size 1
+ off {{parent.IBKColourV3_4.off} {parent.IBKColourV3_4.off} {parent.IBKColourV3_4.off}}
+ mult {{parent.IBKColourV3_4.mult} {parent.IBKColourV3_4.mult} {parent.IBKColourV3_4.mult}}
+ multi 32
+}

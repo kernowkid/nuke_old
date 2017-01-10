@@ -1,0 +1,196 @@
+set cut_paste_input [stack 0]
+version 10.0 v4
+push 0
+push 0
+push 0
+Dot {
+name Dot29
+label Matte
+selected true
+xpos 1692
+ypos -307
+}
+push $cut_paste_input
+Dot {
+name Dot28
+label FG
+selected true
+xpos 1589
+ypos -439
+}
+Copy {
+inputs 2
+from0 rgba.alpha
+to0 rgba.alpha
+name Copy2
+selected true
+xpos 1555
+ypos -317
+}
+set N583f6000 [stack 0]
+Dot {
+name Dot25
+selected true
+xpos 1380
+ypos -307
+}
+set N73f95800 [stack 0]
+ShuffleCopy {
+inputs 2
+alpha alpha2
+black red
+white green
+out2 forward
+name ShuffleCopy1
+label "\[value in] | \[value in2]"
+selected true
+xpos 1346
+ypos 89
+}
+IDistort {
+uv forward
+uv_scale 45
+name IDistort1
+selected true
+xpos 1346
+ypos 138
+}
+FilterErode {
+channels all
+size 8
+name FilterErode1
+selected true
+xpos 1346
+ypos 176
+}
+Invert {
+channels alpha
+name Invert2
+selected true
+xpos 1346
+ypos 240
+}
+Blur {
+channels alpha
+size 6
+name Blur5
+selected true
+xpos 1346
+ypos 278
+}
+Premult {
+name Premult2
+selected true
+xpos 1346
+ypos 325
+}
+push $N73f95800
+Dot {
+name Dot27
+selected true
+xpos 1253
+ypos -307
+}
+Merge2 {
+inputs 2+1
+name Merge23
+selected true
+xpos 1219
+ypos 325
+}
+push $N583f6000
+Blur {
+channels rgba
+size 5.8
+name Blur4
+selected true
+xpos 1555
+ypos -258
+}
+Dot {
+name Dot21
+selected true
+xpos 1589
+ypos -196
+}
+set N583f8800 [stack 0]
+Dot {
+name Dot20
+selected true
+xpos 1441
+ypos -196
+}
+Transform {
+translate {1 0}
+center {1067 711.5}
+name Transform10
+selected true
+xpos 1407
+ypos -129
+}
+push $N583f8800
+Transform {
+translate {-1 0}
+center {1067 711.5}
+name Transform11
+selected true
+xpos 1555
+ypos -126
+}
+Merge2 {
+inputs 2
+operation from
+name Merge20
+selected true
+xpos 1471
+ypos -59
+}
+Dot {
+name Dot24
+selected true
+xpos 1505
+ypos 5
+}
+push $N583f8800
+Dot {
+name Dot22
+selected true
+xpos 1695
+ypos -196
+}
+Transform {
+translate {0 1}
+center {1067 711.5}
+name Transform12
+selected true
+xpos 1661
+ypos -125
+}
+push 0
+Transform {
+translate {0 -1}
+center {1067 711.5}
+name Transform13
+selected true
+xpos 1771
+ypos -122
+}
+Merge2 {
+inputs 2
+operation from
+name Merge21
+selected true
+xpos 1719
+ypos -58
+}
+ShuffleCopy {
+inputs 2
+red red
+blue black
+alpha black
+name ShuffleCopy2
+label "\[value in] | \[value in2]"
+selected true
+xpos 1719
+ypos -5
+}

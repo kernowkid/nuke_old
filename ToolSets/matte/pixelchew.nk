@@ -1,0 +1,219 @@
+set cut_paste_input [stack 0]
+version 10.0 v3
+push $cut_paste_input
+Group {
+ name pixelChew5
+ label v03
+ selected true
+ xpos 1128
+ ypos 1490
+ postage_stamp_frame 1017
+ addUserKnob {20 User}
+ addUserKnob {4 chewMode l "Chew mode" M {"Chew out" "Chew in" "" "" "" ""}}
+ addUserKnob {41 size l "Dilate matte" T Dilate7.size}
+ addUserKnob {41 size_2 l Chew T Blur31.size}
+ addUserKnob {41 size_3 l "Post process blur" T Blur32.size}
+ addUserKnob {41 size_1 l "Blur premult matte" T Blur34.size}
+ addUserKnob {6 showPlate l "Mult by original alpha" +STARTLINE}
+ showPlate true
+}
+ Input {
+  inputs 0
+  name Matte
+  xpos -795
+  ypos 432
+ }
+ Dot {
+  name Dot316
+  xpos -761
+  ypos 488
+ }
+ Invert {
+  channels rgba
+  name Invert1
+  xpos -720
+  ypos 483
+  disable {{parent.chewMode i}}
+ }
+ Dilate {
+  channels rgba
+  name Dilate7
+  xpos -610
+  ypos 483
+ }
+set N11710c00 [stack 0]
+ Input {
+  inputs 0
+  name Plate
+  xpos -427
+  ypos 305
+  number 1
+ }
+ Dot {
+  name Dot7
+  xpos -393
+  ypos 349
+ }
+set N11711800 [stack 0]
+ Shuffle {
+  alpha white
+  name Shuffle39
+  xpos -427
+  ypos 443
+ }
+set N11710800 [stack 0]
+ Merge2 {
+  inputs 2
+  operation stencil
+  name Merge133
+  xpos -427
+  ypos 483
+ }
+ Blur {
+  channels rgba
+  name Blur31
+  xpos -427
+  ypos 557
+ }
+set N11711400 [stack 0]
+ Shuffle {
+  red alpha
+  green alpha
+  blue alpha
+  name Shuffle1
+  label "\[value in]"
+  xpos -238
+  ypos 551
+  postage_stamp_frame 983
+ }
+ Unpremult {
+  name Unpremult2
+  xpos -238
+  ypos 595
+ }
+ Blur {
+  size {{parent.Blur32.size}}
+  name Blur1
+  xpos -238
+  ypos 621
+ }
+ Shuffle {
+  alpha red
+  name Shuffle2
+  label "\[value in]"
+  xpos -238
+  ypos 702
+  postage_stamp_frame 983
+ }
+ Dot {
+  name Dot3
+  xpos -204
+  ypos 782
+ }
+push $N11710c00
+ Blur {
+  channels {-rgba.red -rgba.green -rgba.blue rgba.alpha}
+  name Blur34
+  xpos -610
+  ypos 572
+ }
+push $N11710800
+ Dot {
+  name Dot317
+  xpos -503
+  ypos 447
+ }
+ Merge2 {
+  inputs 2
+  operation stencil
+  name Merge140
+  xpos -537
+  ypos 638
+ }
+ Dot {
+  name Dot319
+  xpos -503
+  ypos 747
+ }
+push $N11711400
+ Unpremult {
+  name Unpremult1
+  xpos -427
+  ypos 595
+ }
+ Blur {
+  channels rgba
+  name Blur32
+  xpos -427
+  ypos 621
+ }
+ Merge2 {
+  inputs 2
+  name Merge139
+  xpos -427
+  ypos 743
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy7
+  xpos -427
+  ypos 772
+ }
+set Nb2edd000 [stack 0]
+push $N11711800
+ Dot {
+  name Dot5
+  xpos -120
+  ypos 349
+ }
+ Dot {
+  name Dot2
+  xpos -120
+  ypos 972
+ }
+push $Nb2edd000
+ Unpremult {
+  name Unpremult3
+  xpos -345
+  ypos 928
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy1
+  xpos -345
+  ypos 962
+ }
+ Premult {
+  name Premult1
+  xpos -345
+  ypos 1012
+ }
+ Switch {
+  inputs 2
+  which {{1-parent.showPlate}}
+  name Switch2
+  xpos -427
+  ypos 1100
+ }
+ Output {
+  name Output1
+  xpos -427
+  ypos 1227
+ }
+push $N11711800
+push $Nb2edd000
+ Viewer {
+  inputs 2
+  frame_range 128-128
+  center_fstop 0
+  gl_buffer_depth float
+  viewerInputOrder "after viewer process"
+  name Viewer2
+  xpos -627
+  ypos 922
+ }
+end_group

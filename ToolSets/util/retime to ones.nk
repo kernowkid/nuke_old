@@ -1,0 +1,56 @@
+set cut_paste_input [stack 0]
+version 10.0 v3
+push $cut_paste_input
+Dot {
+name Dot187
+selected true
+xpos -3752
+ypos 1913
+}
+set N6cc99800 [stack 0]
+TimeWarp {
+lookup {{parent.TimeSwitch1.retimeToOnes C 0 x49 49}}
+time ""
+name TimeWarp1
+label "retime to ones"
+selected true
+xpos -3786
+ypos 1997
+}
+TimeWarp {
+lookup {{parent.TimeSwitch1.retimeToOriginals C 0 x49 49}}
+time ""
+name TimeWarp2
+label "retime to originals"
+selected true
+xpos -3786
+ypos 2131
+}
+push $N6cc99800
+Dot {
+name Dot188
+selected true
+xpos -3924
+ypos 1913
+}
+set N6cc98c00 [stack 0]
+Merge2 {
+inputs 2
+operation difference
+name Merge93
+selected true
+xpos -3786
+ypos 2240
+}
+push $N6cc98c00
+TimeSwitch {
+retimeToOnes 0
+retimeToOriginals 0
+similarityOutput 0
+firstFrame 0
+lastFrame 0
+name TimeSwitch1
+selected true
+xpos -3958
+ypos 2074
+}

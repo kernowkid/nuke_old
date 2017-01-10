@@ -1,0 +1,122 @@
+set cut_paste_input [stack 0]
+version 10.0 v3
+BackdropNode {
+ inputs 0
+ name BackdropNode119
+ tile_color 0x388e8e00
+ label "hsv transfer"
+ note_font_size 42
+ selected true
+ xpos 11403
+ ypos 25395
+ bdwidth 416
+ bdheight 511
+}
+Unpremult {
+ inputs 0
+ name Unpremult2
+ selected true
+ xpos 11424
+ ypos 25502
+ postage_stamp_frame 993
+}
+Blur {
+ channels rgba
+ size 79
+ name Blur2
+ selected true
+ xpos 11424
+ ypos 25528
+ postage_stamp_frame 993
+}
+Colorspace {
+ colorspace_out HSV
+ name Colorspace1
+ selected true
+ xpos 11424
+ ypos 25554
+ postage_stamp_frame 993
+}
+Dot {
+ name Dot11
+ selected true
+ xpos 11458
+ ypos 25612
+}
+set N5caee000 [stack 0]
+Dot {
+ name Dot12
+ selected true
+ xpos 11458
+ ypos 25670
+}
+set N5caeec00 [stack 0]
+Dot {
+ name Dot55
+ selected true
+ xpos 11458
+ ypos 25738
+}
+push $N5caeec00
+push $N5caee000
+push $cut_paste_input
+Unpremult {
+ name Unpremult1
+ selected true
+ xpos 11658
+ ypos 25524
+ postage_stamp_frame 993
+}
+Colorspace {
+ colorspace_out HSV
+ name Colorspace3
+ selected true
+ xpos 11658
+ ypos 25563
+ postage_stamp_frame 993
+}
+Dissolve {
+ inputs 2
+ channels {rgba.red -rgba.green -rgba.blue none}
+ which 0.644
+ name Dissolve1_hue
+ selected true
+ xpos 11658
+ ypos 25608
+ postage_stamp_frame 993
+}
+Dissolve {
+ inputs 2
+ channels {-rgba.red rgba.green -rgba.blue none}
+ which 0.216
+ name Dissolve2_sat
+ selected true
+ xpos 11658
+ ypos 25666
+ postage_stamp_frame 993
+}
+Dissolve {
+ inputs 2
+ channels {-rgba.red -rgba.green rgba.blue none}
+ which 0.216
+ name Dissolve3_value
+ selected true
+ xpos 11658
+ ypos 25734
+ postage_stamp_frame 993
+}
+Colorspace {
+ colorspace_in HSV
+ name Colorspace4
+ selected true
+ xpos 11658
+ ypos 25795
+ postage_stamp_frame 993
+}
+Premult {
+ name Premult1
+ selected true
+ xpos 11658
+ ypos 25844
+ postage_stamp_frame 993
+}

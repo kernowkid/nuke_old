@@ -1,0 +1,377 @@
+set cut_paste_input [stack 0]
+version 10.0 v5
+push $cut_paste_input
+Group {
+ name scroll
+ selected true
+ xpos 5073
+ ypos -85
+ addUserKnob {20 User}
+ addUserKnob {12 scroll}
+ scroll {1790 51000}
+ addUserKnob {7 rotate t "Rotates the whole tiled image after the scroll has been processed." R -360 360}
+ rotate 119
+ addUserKnob {26 overlap}
+ addUserKnob {12 distance t "Sets the distance of the overlap.\nThe output will crop in resolution by the same amount as the overlap.\nNegative values will increase the size and create a border around the image. Softness will have no effect, when distance is negative."}
+ addUserKnob {12 softness t "Default softness is set to the same value  as the overlap distance.\nNegative values will be turned into positive values.\nSoftness will have no effect, when distance is negative." -STARTLINE}
+ softness {{distance.main} {distance.main}}
+ addUserKnob {6 showOverlap l "show overlap" t "Shows the overlapped image berfore it's used in the  scroll.\nNote that this output might not be the same size as the input image." -STARTLINE}
+ addUserKnob {41 resize l "resize type" t "Because using an overlap changes the resolution of the input, you can use this to reformat the output image to the same size as the input. \nJust choose how to scale the image. Fill is the default." T Reformat1.resize}
+ addUserKnob {26 "" l mirror}
+ addUserKnob {6 horizontal l Horizontal +STARTLINE}
+ addUserKnob {6 vertical l Vertical -STARTLINE}
+}
+ Rectangle {
+  inputs 0
+  area {0 {parent.distance.y<0?0:-(abs(parent.softness.y)) i} {Crop1.box.r i} {parent.distance.y i}}
+  softness {0 {parent.distance.y<0?0:abs(parent.softness) i}}
+  name Rectangle2
+  xpos -1086
+  ypos -491
+ }
+ Rectangle {
+  inputs 0
+  area {{parent.distance<0?0:-parent.softness.x i} 0 {parent.distance.x i} {Crop1.box.t i}}
+  softness {{parent.distance.x<0?0:parent.softness i} 0}
+  name Rectangle1
+  xpos -1043
+  ypos -627
+ }
+ Input {
+  inputs 0
+  name Input1
+  xpos -1250
+  ypos -845
+ }
+ Crop {
+  box {0 0 {width i} {height i}}
+  name Crop1
+  xpos -1250
+  ypos -752
+ }
+set Nd0310c00 [stack 0]
+ Transform {
+  translate {{-width+(parent.distance.main) i} 0}
+  center {320 240}
+  name Transform1
+  xpos -1145
+  ypos -699
+ }
+push $Nd0310c00
+ Keymix {
+  inputs 3
+  name Keymix1
+  label "horizontal overlap"
+  xpos -1250
+  ypos -641
+ }
+set Nd0310400 [stack 0]
+ Transform {
+  translate {0 {-height+(abs(parent.distance.y)) i}}
+  center {320 240}
+  name Transform2
+  xpos -1137
+  ypos -578
+ }
+push $Nd0310400
+ Keymix {
+  inputs 3
+  name Keymix2
+  label "vertical overlap"
+  xpos -1250
+  ypos -505
+ }
+ Transform {
+  translate {{parent.distance.x>0?0:floor(abs(parent.distance/2)) i} {parent.distance.y>0?0:floor(abs(parent.distance/2)) i}}
+  center {320 240}
+  name Transform3
+  label "centered image"
+  xpos -1250
+  ypos -437
+ }
+ Crop {
+  box {{Crop1.box i} {Crop1.box i} {parent.distance.x<0?Crop1.box+(abs(parent.distance.x)):Crop1.box-(abs(parent.distance.x)) i} {parent.distance.y<0?Crop1.box+(abs(parent.distance.y)):Crop1.box-(abs(parent.distance.y)) i}}
+  reformat true
+  name Crop2
+  label "after overlap"
+  xpos -1250
+  ypos -395
+ }
+set Nd042f400 [stack 0]
+ Dot {
+  name Dot2
+  xpos -1216
+  ypos -294
+ }
+set Nd042f000 [stack 0]
+ Dot {
+  name Dot7
+  xpos -886
+  ypos -294
+ }
+ Transform {
+  translate {{Transform26.scroll-(Crop2.box.r*Transform26.times)+Crop2.box.r i} {Transform26.scroll-(Crop2.box.t*Transform26.times)-Crop2.box.t i}}
+  scale {{Transform26.mirrorHelper%2==1?1:-1 i} {Transform26.mirrorHelper%2==0?-1:1 i}}
+  center {{Crop2.box.r/2 i} {Crop2.box.t/2 i}}
+  name Transform5
+  label "outer tile 6"
+  xpos -920
+  ypos -42
+ }
+ Dot {
+  name Dot8
+  xpos -886
+  ypos 210
+ }
+push $Nd042f000
+ Dot {
+  name Dot6
+  xpos -886
+  ypos -294
+ }
+ Transform {
+  translate {{Transform26.scroll-(Crop2.box.r*Transform26.times)+Crop2.box.r i} {Transform26.scroll-(Crop2.box.t*Transform26.times) i}}
+  scale {{Transform26.mirrorHelper%2==1?1:-1 i} {Transform26.mirrorHelper2%2==0?-1:1 i}}
+  center {{Crop2.box.r/2 i} {Crop2.box.t/2 i}}
+  name Transform6
+  label "outer tile 4"
+  xpos -920
+  ypos -114
+ }
+ Dot {
+  name Dot13
+  xpos -886
+  ypos 210
+ }
+push $Nd042f000
+ Dot {
+  name Dot16
+  xpos -1326
+  ypos -294
+ }
+ Transform {
+  translate {{Transform26.scroll-(Crop2.box.r*Transform26.times)-(Crop2.box.r*2) i} {Transform26.scroll-(Crop2.box.t*Transform26.times)-Crop2.box.t i}}
+  scale {{Transform26.mirrorHelper2%2==1?1:-1 i} {Transform26.mirrorHelper%2==0?-1:1 i}}
+  center {{Crop2.box.r/2 i} {Crop2.box.t/2 i}}
+  name Transform7
+  label "outer tile 5"
+  xpos -1360
+  ypos -42
+ }
+ Dot {
+  name Dot3
+  xpos -1326
+  ypos 210
+ }
+push $Nd042f000
+ Dot {
+  name Dot15
+  xpos -1326
+  ypos -294
+ }
+ Transform {
+  translate {{Transform26.scroll-(Crop2.box.r*Transform26.times)-(Crop2.box.r*2) i} {Transform26.scroll-(Crop2.box.t*Transform26.times) i}}
+  scale {{Transform26.mirrorHelper2%2==1?1:-1 i} {Transform26.mirrorHelper2%2==0?-1:1 i}}
+  center {{Crop2.box.r/2 i} {Crop2.box.t/2 i}}
+  name Transform9
+  label "outer tile 3"
+  xpos -1360
+  ypos -114
+ }
+ Dot {
+  name Dot4
+  xpos -1326
+  ypos 210
+ }
+push $Nd042f000
+ Dot {
+  name Dot14
+  xpos -996
+  ypos -294
+ }
+ Transform {
+  translate {{Transform26.scroll-(Crop2.box.r*Transform26.times) i} {Transform26.scroll-(Crop2.box.t*Transform26.times)-(Crop2.box.t*2) i}}
+  scale {{Transform26.mirrorHelper2%2==1?1:-1 i} {Transform26.mirrorHelper2%2==1?1:-1 i}}
+  center {{Crop2.box.r/2 i} {Crop2.box.t/2 i}}
+  name Transform12
+  label "outer tile 8"
+  xpos -1030
+  ypos 54
+ }
+push $Nd042f000
+ Transform {
+  translate {{Transform26.scroll-(Crop2.box.r*Transform26.times)-Crop2.box.r i} {Transform26.scroll-(Crop2.box.t*Transform26.times)-(Crop2.box.t*2) i}}
+  scale {{Transform26.mirrorHelper%2==1?1:-1 i} {Transform26.mirrorHelper2%2==1?1:-1 i}}
+  center {{Crop2.box.r/2 i} {Crop2.box.t/2 i}}
+  name Transform20
+  label "outer tile 7"
+  xpos -1250
+  ypos 54
+ }
+ Dot {
+  name Dot1
+  xpos -1216
+  ypos 210
+ }
+push 0
+push $Nd042f000
+ Dot {
+  name Dot10
+  xpos -996
+  ypos -294
+ }
+ Transform {
+  translate {{Transform26.scroll-(Crop2.box.r*Transform26.times) i} {Transform26.scroll-(Crop2.box.t*Transform26.times)+Crop2.box.t i}}
+  scale {{Transform26.mirrorHelper2%2==1?1:-1 i} {Transform26.mirrorHelper%2==0?-1:1 i}}
+  center {{Crop2.box.r/2 i} {Crop2.box.t/2 i}}
+  name Transform21
+  label "outer tile 2"
+  xpos -1030
+  ypos -210
+ }
+push $Nd042f000
+ Transform {
+  translate {{Transform26.scroll-(Crop2.box.r*Transform26.times)-Crop2.box.r} {Transform26.scroll-(Crop2.box.t*Transform26.times)+Crop2.box.t}}
+  scale {{Transform26.mirrorHelper%2==1?1:-1} {Transform26.mirrorHelper%2==0?-1:1}}
+  center {{Crop2.box.r/2} {Crop2.box.t/2}}
+  name Transform22
+  label "outer tile 1"
+  xpos -1250
+  ypos -210
+ }
+ Dot {
+  name Dot9
+  xpos -1216
+  ypos 210
+ }
+ Merge2 {
+  inputs 8+1
+  operation plus
+  also_merge all
+  name Merge1
+  label "4x4 grid. \nOnly used when rotating"
+  xpos -1030
+  ypos 191
+ }
+push $Nd042f400
+ Dot {
+  name Dot5
+  xpos -1480
+  ypos -383
+ }
+ Dot {
+  name Dot18
+  xpos -1480
+  ypos 556
+ }
+push $Nd042f000
+ Dot {
+  name Dot12
+  xpos -996
+  ypos -294
+ }
+ Transform {
+  translate {{Transform26.scroll-(Crop2.box.r*Transform26.times) i} {Transform26.scroll-(Crop2.box.t*Transform26.times)-Crop2.box.t i}}
+  scale {{Transform26.mirrorHelper2%2==1?1:-1 i} {Transform26.mirrorHelper%2==1?1:-1 i}}
+  center {{Crop2.box.r/2 i} {Crop2.box.t/2 i}}
+  name Transform23
+  label "tile 4"
+  xpos -1030
+  ypos -42
+ }
+push $Nd042f000
+ Transform {
+  translate {{Transform26.scroll-(Crop2.box.r*Transform26.times)-Crop2.box.r i} {Transform26.scroll-(Crop2.box.t*Transform26.times)-Crop2.box.t i}}
+  scale {{Transform26.mirrorHelper%2==1?1:-1 i} {Transform26.mirrorHelper%2==1?1:-1 i}}
+  center {{Crop2.box.r/2 i} {Crop2.box.t/2 i}}
+  name Transform24
+  label "tile 3"
+  xpos -1250
+  ypos -42
+ }
+push 0
+push $Nd042f000
+ Transform {
+  translate {{Transform26.scroll-(Crop2.box.r*Transform26.times)-Crop2.box.r i} {Transform26.scroll-(Crop2.box.t*Transform26.times) i}}
+  scale {{Transform26.mirrorHelper%2==1?1:-1 i} {Transform26.mirrorHelper2%2==0?-1:1 i}}
+  center {{Crop2.box.r/2 i} {Crop2.box.t/2 i}}
+  name Transform25
+  label "tile 1"
+  xpos -1250
+  ypos -114
+ }
+push $Nd042f000
+ Dot {
+  name Dot11
+  xpos -996
+  ypos -294
+ }
+ Transform {
+  translate {{Transform26.scroll-(Crop2.box.r*Transform26.times) i x1 251} {Transform26.scroll-(Crop2.box.t*Transform26.times) i}}
+  scale {{Transform26.mirrorHelper2%2==1?1:-1 i} {Transform26.mirrorHelper2%2==0?-1:1 i}}
+  center {{Crop2.box.r/2 i} {Crop2.box.t/2 i}}
+  name Transform26
+  label "tile 2 and master node"
+  xpos -1030
+  ypos -114
+  addUserKnob {20 User}
+  addUserKnob {12 times}
+  times {{floor(scroll.x/Crop2.box.r) i} {floor(scroll.y/Crop2.box.t) i}}
+  addUserKnob {12 scroll}
+  scroll {{parent.scroll.main i x154 3400} {parent.scroll.main i}}
+  addUserKnob {12 mirrorHelper}
+  mirrorHelper {{parent.horizontal==0?1:floor(scroll.x/Crop2.box.r)%2 i} {parent.vertical==0?1:floor(scroll.y/Crop2.box.t)%2 i}}
+  addUserKnob {12 mirrorHelper2}
+  mirrorHelper2 {{parent.horizontal==0?1:(floor(scroll.x/Crop2.box.r)+1)%2 i} {parent.vertical==0?1:(floor(scroll.y/Crop2.box.t)+1)%2 i}}
+ }
+ Merge2 {
+  inputs 4+1
+  operation plus
+  also_merge all
+  name Merge5
+  label "2x2 grid"
+  xpos -1140
+  ypos -42
+ }
+ Dot {
+  name Dot17
+  xpos -1106
+  ypos 363
+ }
+ Crop {
+  box {0 0 {parent.Crop2.box.main.r i} {Crop2.box.t i}}
+  reformat true
+  name Crop4
+  selected true
+  xpos -1140
+  ypos 445
+ }
+ Reformat {
+  type "to box"
+  box_width {{Crop1.box.r}}
+  box_height {{Crop1.box.t}}
+  box_fixed true
+  resize fit
+  center false
+  name Reformat1
+  xpos -1140
+  ypos 497
+ }
+ Switch {
+  inputs 2
+  which {{parent.showOverlap}}
+  name Switch1
+  xpos -1140
+  ypos 551
+ }
+ Output {
+  name Output1
+  xpos -1140
+  ypos 610
+ }
+ Viewer {
+  name Viewer1
+  xpos -1741
+  ypos -219
+ }
+end_group

@@ -1,0 +1,107 @@
+set cut_paste_input [stack 0]
+version 10.0 v3
+push $cut_paste_input
+Group {
+name NoiseDist8
+selected true
+xpos 4930
+ypos 6074
+postage_stamp_frame 1017
+addUserKnob {20 User}
+addUserKnob {41 size l x/ysize T Noise1.size}
+addUserKnob {41 octaves T Noise1.octaves}
+addUserKnob {41 zoffset l z T Noise1.zoffset}
+addUserKnob {41 nyquist l "clip at Nyquist limit" T Noise1.nyquist}
+addUserKnob {41 lacunarity T Noise1.lacunarity}
+addUserKnob {41 gain T Noise1.gain}
+addUserKnob {41 gamma T Noise1.gamma}
+addUserKnob {41 size_1 l "blur noise" T Blur1.size}
+addUserKnob {26 ""}
+addUserKnob {41 uv_scale l "UV scale" T IDistort1.uv_scale}
+}
+Input {
+inputs 0
+name Input1
+xpos 717
+ypos -543
+}
+set Nbe83d800 [stack 0]
+AdjBBox {
+numpixels {{parent.IDistort1.uv_scale} {parent.IDistort1.uv_scale}}
+name AdjBBox1
+xpos 902
+ypos -420
+postage_stamp_frame 1017
+}
+push $Nbe83d800
+Noise {
+output {forward.u -forward.v none -backward.u}
+size 3
+zoffset 2
+octaves 3
+lacunarity 3
+gain 0.19
+gamma 0.65
+center {1024 768}
+name Noise1
+xpos 717
+ypos -503
+postage_stamp_frame 1017
+}
+Noise {
+output {-forward.u forward.v none -backward.u}
+size {{parent.Noise1.size} {parent.Noise1.size}}
+zoffset {{parent.Noise1.zoffset+999}}
+octaves {{parent.Noise1.octaves}}
+lacunarity {{parent.Noise1.lacunarity}}
+gain {{parent.Noise1.gain}}
+gamma {{parent.Noise1.gamma}}
+center {1024 768}
+name Noise2
+xpos 717
+ypos -465
+postage_stamp_frame 1017
+}
+Blur {
+channels forward
+size 2.6
+name Blur1
+selected true
+xpos 717
+ypos -412
+postage_stamp_frame 1017
+}
+IDistort {
+channels rgba
+uv forward
+uv_offset 0.5
+uv_scale 6
+name IDistort1
+xpos 717
+ypos -363
+postage_stamp_frame 1017
+}
+CopyBBox {
+inputs 2
+name CopyBBox1
+xpos 717
+ypos -309
+postage_stamp_frame 1017
+}
+set N54bb8800 [stack 0]
+Output {
+name Output1
+xpos 717
+ypos -265
+}
+push $N54bb8800
+Viewer {
+center_fstop 0
+gl_buffer_depth float
+input_process false
+viewerInputOrder "after viewer process"
+name Viewer1
+xpos 956
+ypos -288
+}
+end_group

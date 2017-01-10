@@ -1,0 +1,185 @@
+set cut_paste_input [stack 0]
+version 10.0 v4
+push $cut_paste_input
+Group {
+ name keyChew_achang14
+ selected true
+ xpos 2150
+ ypos -624
+ addUserKnob {20 KeyChew}
+ addUserKnob {26 ""}
+ addUserKnob {41 chew T A.chew}
+ addUserKnob {41 soften T A.soften}
+ addUserKnob {6 anamorphicAware t "DOES NOTHING NOW!" +STARTLINE}
+ addUserKnob {41 maximum_enable l "clamp values over 1" T Clamp3.maximum_enable}
+ addUserKnob {6 inFrame l "in frame only" t "Crop to the image frame." +STARTLINE}
+ addUserKnob {22 customBox l "custom crop" t "Select a custom crop area." -STARTLINE T "node = nuke.thisNode()\nif node\['inFrame'].value():\n\tnode\['bbox'].clearAnimated()\n\tnode.knobs()\['bbox'].setVisible( True )\n\tnode.knobs()\['inFrame'].setEnabled( False )\n"}
+ addUserKnob {22 clearCustomBox l "reset crop" t "Clear the custom copped area." -STARTLINE T "node = nuke.thisNode()\nif node\['inFrame'].value():\n\tnode\['bbox'].setExpression( '\[python nuke.thisNode().input(0).format().x()]', 0 )\n\tnode\['bbox'].setExpression( '\[python nuke.thisNode().input(0).format().y()]', 1 )\n\tnode\['bbox'].setExpression( '\[python nuke.thisNode().input(0).format().r()]', 2 )\n\tnode\['bbox'].setExpression( '\[python nuke.thisNode().input(0).format().t()]', 3 )\n\tnode.knobs()\['bbox'].setVisible( False )\n\tnode.knobs()\['inFrame'].setEnabled( True )"}
+ addUserKnob {41 bbox l "" t "Custom crop area." +STARTLINE +HIDDEN T Crop1.box}
+}
+ Input {
+  inputs 0
+  name A
+  xpos -142
+  ypos -188
+  addUserKnob {20 User}
+  addUserKnob {7 chew R -100 100}
+  addUserKnob {7 soften R 0 200}
+ }
+ AddChannels {
+  channels alpha
+  name AddChannels1
+  label "Done to avoid error messages."
+  xpos -142
+  ypos -162
+ }
+ Crop {
+  box {{"\[python nuke.thisNode().input(0).format().x()]"} {"\[python nuke.thisNode().input(0).format().y()]"} {"\[python nuke.thisNode().input(0).format().r()]"} {"\[python nuke.thisNode().input(0).format().t()]"}}
+  name Crop1
+  xpos -142
+  ypos -112
+  disable {{!parent.inFrame i}}
+ }
+ ColorLookup {
+  lut {master {}
+    red {curve 1 x5 0.95 0.8 x20 0.5 x40 0.3 x80 0.2 x200 0.1}
+    green {curve 1 x5 0.95 0.8 x20 0.5 x40 0.3 x80 0.2 x200 0.1}
+    blue {curve 1 x5 0.95 0.8 x20 0.5 x40 0.3 x80 0.2 x200 0.1}
+    alpha {curve 1 x5 0.95 0.8 x20 0.5 x40 0.3 x80 0.2 x200 0.1}}
+  mix 0
+  name scalarLookup
+  xpos -142
+  ypos -82
+  addUserKnob {20 User}
+  addUserKnob {7 chew}
+  chew {{abs(A.chew)}}
+  addUserKnob {19 scalarOutput}
+  scalarOutput {{"\[python nuke.thisNode()\\\[\\\"lut\\\"\\].getValueAt(\\ nuke.thisNode()\\\[\\\"chew\\\"\\].value(),\\ 1\\ )]"} {"\[python nuke.thisNode()\\\[\\\"lut\\\"\\].getValueAt(\\ nuke.thisNode()\\\[\\\"chew\\\"\\].value(),\\ 2\\ )]"} {"\[python nuke.thisNode()\\\[\\\"lut\\\"\\].getValueAt(\\ nuke.thisNode()\\\[\\\"chew\\\"\\].value(),\\ 3\\ )]"} {"\[python nuke.thisNode()\\\[\\\"lut\\\"\\].getValueAt(\\ nuke.thisNode()\\\[\\\"chew\\\"\\].value(),\\ 4\\ )]"}}
+  addUserKnob {6 scalarOutput_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ }
+ Dot {
+  name Dot1
+  xpos -108
+  ypos -60
+ }
+set Nb85a9000 [stack 0]
+ Dot {
+  name Dot2
+  xpos -177
+  ypos -60
+ }
+ Dot {
+  name Dot3
+  xpos -177
+  ypos 108
+ }
+set Nb85a9800 [stack 0]
+push $Nb85a9000
+ Invert {
+  channels alpha
+  name Invert1
+  xpos -21
+  ypos -70
+ }
+push $Nb85a9000
+ Switch {
+  inputs 2
+  which {{A.chew>=0?0:1}}
+  name Switch1
+  selected true
+  xpos -142
+  ypos -42
+ }
+ Blur {
+  channels alpha
+  size {{abs(A.chew)} {w}}
+  name FgEdgeBlur2A
+  xpos -142
+  ypos -16
+ }
+ Multiply {
+  value {1 1 1 {max(FgEdgeBlur2A.size.w*1.5,1) i}}
+  name FgEdgeMult2A
+  xpos -142
+  ypos 22
+ }
+ Gamma {
+  value {1 1 1 {scalarLookup.scalarOutput}}
+  name FgEdgeGamma3A
+  xpos -142
+  ypos 60
+ }
+set Nb85a6800 [stack 0]
+ Merge2 {
+  inputs 2
+  operation minus
+  name Merge1
+  xpos -142
+  ypos 98
+ }
+push $Nb85a6800
+ Dot {
+  name Dot5
+  xpos -38
+  ypos 70
+ }
+ Dot {
+  name Dot4
+  xpos -38
+  ypos 140
+ }
+ Switch {
+  inputs 2
+  which {{Switch1.which}}
+  name Switch2
+  xpos -142
+  ypos 136
+ }
+ Clamp {
+  name Clamp1
+  xpos -142
+  ypos 162
+ }
+ Blur {
+  size {{A.soften} {A.soften}}
+  quality 45
+  name BlurResult1A
+  xpos -142
+  ypos 200
+ }
+push $Nb85a9800
+ Dot {
+  name Dot6
+  xpos -177
+  ypos 248
+ }
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  unpremult -mask.a
+  name SwitchMatte2A
+  xpos -142
+  ypos 238
+ }
+ Clamp {
+  channels alpha
+  name Clamp3
+  xpos -142
+  ypos 276
+ }
+ Crop {
+  box {{"\[python nuke.thisNode().input(0).format().x()]" i} {"\[python nuke.thisNode().input(0).format().y()]" i} {"\[python nuke.thisNode().input(0).format().r()]" i} {"\[python nuke.thisNode().input(0).format().t()]" i}}
+  reformat true
+  crop false
+  name Crop2
+  xpos -142
+  ypos 314
+  disable {{!parent.inFrame i}}
+ }
+ Output {
+  name Output1
+  xpos -142
+  ypos 340
+ }
+end_group

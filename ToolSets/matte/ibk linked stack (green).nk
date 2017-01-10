@@ -1,0 +1,92 @@
+set cut_paste_input [stack 0]
+version 10.0 v4
+push $cut_paste_input
+Dot {
+ name Dot2
+ selected true
+ xpos -2405
+ ypos 5499
+}
+IBKColourV3 {
+ name IBKColourV3_4
+ selected true
+ xpos -2439
+ ypos 5523
+ postage_stamp_frame 1001
+ screen_type green
+ Size 1
+ off {0.1150000021 0.0700000003 -0.07999999821}
+ erode 5
+}
+IBKColourV3 {
+ name IBKColourV3_5
+ selected true
+ xpos -2439
+ ypos 5566
+ postage_stamp_frame 1001
+ screen_type green
+ Size 1
+ off {{IBKColourV3_4.off.r} {IBKColourV3_4.off.g} {IBKColourV3_4.off.b}}
+ mult {{parent.IBKColourV3_4.mult} {parent.IBKColourV3_4.mult} {parent.IBKColourV3_4.mult}}
+ multi 2
+}
+IBKColourV3 {
+ name IBKColourV3_6
+ selected true
+ xpos -2439
+ ypos 5596
+ postage_stamp_frame 1001
+ screen_type green
+ Size 1
+ off {{parent.IBKColourV3_4.off} {parent.IBKColourV3_4.off} {parent.IBKColourV3_4.off}}
+ mult {{parent.IBKColourV3_4.mult} {parent.IBKColourV3_4.mult} {parent.IBKColourV3_4.mult}}
+ multi 4
+}
+IBKColourV3 {
+ name IBKColourV3_7
+ selected true
+ xpos -2439
+ ypos 5636
+ postage_stamp_frame 1001
+ screen_type green
+ Size 1
+ off {{parent.IBKColourV3_4.off} {parent.IBKColourV3_4.off} {parent.IBKColourV3_4.off}}
+ mult {{parent.IBKColourV3_4.mult} {parent.IBKColourV3_4.mult} {parent.IBKColourV3_4.mult}}
+ multi 8
+}
+IBKColourV3 {
+ name IBKColourV3_8
+ selected true
+ xpos -2439
+ ypos 5670
+ postage_stamp_frame 1001
+ screen_type green
+ Size 1
+ off {{parent.IBKColourV3_4.off} {parent.IBKColourV3_4.off} {parent.IBKColourV3_4.off}}
+ mult {{parent.IBKColourV3_4.mult} {parent.IBKColourV3_4.mult} {parent.IBKColourV3_4.mult}}
+ multi 16
+}
+IBKColourV3 {
+ name IBKColourV3_9
+ selected true
+ xpos -2439
+ ypos 5714
+ postage_stamp_frame 1001
+ screen_type green
+ Size 1
+ off {{parent.IBKColourV3_4.off} {parent.IBKColourV3_4.off} {parent.IBKColourV3_4.off}}
+ mult {{parent.IBKColourV3_4.mult} {parent.IBKColourV3_4.mult} {parent.IBKColourV3_4.mult}}
+ multi 32
+}
+IBKColourV3 {
+ name IBKColourV3_1
+ selected true
+ xpos -2439
+ ypos 5761
+ postage_stamp_frame 1001
+ screen_type green
+ Size 1
+ off {{parent.IBKColourV3_4.off} {parent.IBKColourV3_4.off} {parent.IBKColourV3_4.off}}
+ mult {{parent.IBKColourV3_4.mult} {parent.IBKColourV3_4.mult} {parent.IBKColourV3_4.mult}}
+ multi 64
+}

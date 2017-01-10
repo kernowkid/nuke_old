@@ -1,0 +1,2424 @@
+set cut_paste_input [stack 0]
+version 10.0 v5
+ColorBars {
+ inputs 0
+ name ColorBars1
+ selected true
+ xpos 2126
+ ypos -892
+}
+Card {
+ m00 {0 0.333333 0}
+ m01 {0 -0.333333 0}
+ m10 {0.333333 0 0}
+ m11 {-0.333333 0 0}
+ m20 {0 -0.333333 0}
+ m21 {0 0.333333 0}
+ m30 {-0.333333 0 0}
+ m31 {0.333333 0 0}
+ name Card1
+ selected true
+ xpos 2126
+ ypos -811
+}
+Group {
+ name CopyGeo
+ selected true
+ xpos 2126
+ ypos -752
+ addUserKnob {20 "" l User}
+ addUserKnob {3 iterations}
+ iterations 5
+ addUserKnob {6 look_at_previous l "look at parent copy (overrides look input)" -STARTLINE}
+ look_at_previous true
+ addUserKnob {26 "" +STARTLINE}
+ addUserKnob {41 display T tg1.display}
+ addUserKnob {41 gl_render_mode l "knob display \$value" +INVISIBLE T tg1.gl_render_mode}
+ addUserKnob {41 gl_wireframe_overlay +INVISIBLE T tg1.gl_wireframe_overlay}
+ addUserKnob {41 gl_display l "knob display 0" +INVISIBLE T tg1.gl_display}
+ addUserKnob {41 selectable T tg1.selectable}
+ addUserKnob {41 gl_selectable l "knob selectable \$value" +INVISIBLE T tg1.gl_selectable}
+ addUserKnob {41 render +INVISIBLE T tg1.render}
+ addUserKnob {41 transform T tg1.transform}
+ addUserKnob {26 "" l " "}
+ addUserKnob {41 import_chan l "import chan file" +INVISIBLE T tg1.import_chan}
+ addUserKnob {41 export_chan l "export chan file" +INVISIBLE T tg1.export_chan}
+ addUserKnob {41 xform_order l "transform order" T tg1.xform_order}
+ addUserKnob {41 rot_order l "rotation order" T tg1.rot_order}
+ addUserKnob {41 translate T tg1.translate}
+ addUserKnob {41 rotate T tg1.rotate}
+ addUserKnob {41 scaling l scale T tg1.scaling}
+ addUserKnob {41 uniform_scale l "uniform scale" T tg1.uniform_scale}
+ addUserKnob {41 skew T tg1.skew}
+ addUserKnob {41 pivot T tg1.pivot}
+ addUserKnob {20 "" l Look}
+ addUserKnob {41 look_axis l "look axis" T tg1.look_axis}
+ addUserKnob {41 rotate_x l "rotate X" +INVISIBLE T tg1.rotate_x}
+ addUserKnob {41 rotate_y l "rotate Y" +INVISIBLE T tg1.rotate_y}
+ addUserKnob {41 rotate_z l "rotate Z" +INVISIBLE T tg1.rotate_z}
+ addUserKnob {41 look_strength l "look strength" T tg1.look_strength}
+ addUserKnob {26 "" l " "}
+ addUserKnob {41 use_quaternions l "use quaternions" +INVISIBLE T tg1.use_quaternions}
+}
+ Input {
+  inputs 0
+  name look
+  xpos -443
+  ypos -373
+  number 1
+ }
+set N55c80400 [stack 0]
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push $N55c80400
+push 0
+ Switch {
+  inputs 2
+  which {{look_at_previous?0:1}}
+  name LookAtSwitch
+  xpos -115
+  ypos -429
+ }
+ set C12e99200 [stack 0]
+push 0
+ Input {
+  inputs 0
+  name geom
+  xpos 235
+  ypos -523
+ }
+ TransformGeo {
+  inputs 3
+  name TransformGeo1
+  xpos 240
+  ypos -437
+ }
+set N469abc00 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -112
+  ypos -373
+  selected false
+ }
+push 0
+push $N469abc00
+ TransformGeo {
+  inputs 3
+  translate {1 0 0}
+  rotate {36 25 19}
+  uniform_scale 0.78
+  look_strength 0.55
+  name tg1
+  xpos 80
+  ypos -373
+ }
+ set C469ab800 [stack 0]
+set N469ab800 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -109
+  ypos -330
+  selected false
+ }
+push 0
+push $N469ab800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos -330
+  selected false
+ }
+set N469ab400 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -113
+  ypos -290
+  selected false
+ }
+push 0
+push $N469ab400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos -292
+  selected false
+ }
+set N469ab000 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -104
+  ypos -249
+  selected false
+ }
+push 0
+push $N469ab000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos -254
+  selected false
+ }
+set N469aac00 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -110
+  ypos -204
+  selected false
+ }
+push 0
+push $N469aac00
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos -216
+  selected false
+ }
+set N469aa800 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -107
+  ypos -162
+  selected false
+ }
+push 0
+push $N469aa800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos -178
+  selected false
+ }
+set N469aa400 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -108
+  ypos -125
+  selected false
+ }
+push 0
+push $N469aa400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos -140
+  selected false
+ }
+set N469aa000 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -191
+  ypos -95
+  selected false
+ }
+push 0
+push $N469aa000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos -102
+  selected false
+ }
+set Ncd937c00 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -102
+  ypos -65
+  selected false
+ }
+push 0
+push $Ncd937c00
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos -64
+  selected false
+ }
+set Ncd937800 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -106
+  ypos -31
+  selected false
+ }
+push 0
+push $Ncd937800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos -26
+  selected false
+ }
+set Ncd937400 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -96
+  ypos 7
+  selected false
+ }
+push 0
+push $Ncd937400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 12
+  selected false
+ }
+set Ncd937000 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -98
+  ypos 46
+  selected false
+ }
+push 0
+push $Ncd937000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 50
+  selected false
+ }
+set Ncd936c00 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -84
+  ypos 85
+  selected false
+ }
+push 0
+push $Ncd936c00
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 88
+  selected false
+ }
+set Ncd936800 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -144
+  ypos 116
+  selected false
+ }
+push 0
+push $Ncd936800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 121
+  selected false
+ }
+set Ncd936400 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -76
+  ypos 166
+  selected false
+ }
+push 0
+push $Ncd936400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 164
+  selected false
+ }
+set Ncd936000 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -145
+  ypos 203
+  selected false
+ }
+push 0
+push $Ncd936000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 203
+  selected false
+ }
+set N4eaa7c00 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -150
+  ypos 238
+  selected false
+ }
+push 0
+push $N4eaa7c00
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 240
+  selected false
+ }
+set N4eaa7800 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -119
+  ypos 277
+  selected false
+ }
+push 0
+push $N4eaa7800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 278
+  selected false
+ }
+set N4eaa7400 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -116
+  ypos 313
+  selected false
+ }
+push 0
+push $N4eaa7400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 316
+  selected false
+ }
+set N4eaa7000 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -109
+  ypos 353
+  selected false
+ }
+push 0
+push $N4eaa7000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 354
+  selected false
+ }
+set N4eaa6c00 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -123
+  ypos 388
+  selected false
+ }
+push 0
+push $N4eaa6c00
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 392
+  selected false
+ }
+set N4eaa6800 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -122
+  ypos 429
+  selected false
+ }
+push 0
+push $N4eaa6800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 430
+  selected false
+ }
+set N4eaa6400 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -128
+  ypos 464
+  selected false
+ }
+push 0
+push $N4eaa6400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 468
+  selected false
+ }
+set N4eaa6000 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -112
+  ypos 502
+  selected false
+ }
+push 0
+push $N4eaa6000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 506
+  selected false
+ }
+set Nba81bc00 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -113
+  ypos 541
+  selected false
+ }
+push 0
+push $Nba81bc00
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 544
+  selected false
+ }
+set Nba81b800 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -107
+  ypos 578
+  selected false
+ }
+push 0
+push $Nba81b800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 582
+  selected false
+ }
+set Nba81b400 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -120
+  ypos 615
+  selected false
+ }
+push 0
+push $Nba81b400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 620
+  selected false
+ }
+set Nba81b000 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -116
+  ypos 657
+  selected false
+ }
+push 0
+push $Nba81b000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 658
+  selected false
+ }
+set Nba81ac00 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -109
+  ypos 694
+  selected false
+ }
+push 0
+push $Nba81ac00
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 696
+  selected false
+ }
+set Nba81a800 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -114
+  ypos 731
+  selected false
+ }
+push 0
+push $Nba81a800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 734
+  selected false
+ }
+set Nba81a400 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -105
+  ypos 774
+  selected false
+ }
+push 0
+push $Nba81a400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 772
+  selected false
+ }
+set Nba81a000 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -100
+  ypos 810
+  selected false
+ }
+push 0
+push $Nba81a000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 810
+  selected false
+ }
+set N82ca7c00 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -103
+  ypos 847
+  selected false
+ }
+push 0
+push $N82ca7c00
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 848
+  selected false
+ }
+set N82ca7800 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -140
+  ypos 885
+  selected false
+ }
+push 0
+push $N82ca7800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 886
+  selected false
+ }
+set N82ca7400 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -130
+  ypos 922
+  selected false
+ }
+push 0
+push $N82ca7400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 924
+  selected false
+ }
+set N82ca7000 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -129
+  ypos 960
+  selected false
+ }
+push 0
+push $N82ca7000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 962
+  selected false
+ }
+set N82ca6c00 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -110
+  ypos 1000
+  selected false
+ }
+push 0
+push $N82ca6c00
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1000
+  selected false
+ }
+set N82ca6800 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -97
+  ypos 1039
+  selected false
+ }
+push 0
+push $N82ca6800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1038
+  selected false
+ }
+set N82ca6400 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -96
+  ypos 1077
+  selected false
+ }
+push 0
+push $N82ca6400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1076
+  selected false
+ }
+set N82ca6000 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -86
+  ypos 1117
+  selected false
+ }
+push 0
+push $N82ca6000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1114
+  selected false
+ }
+set N4a4ddc00 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -78
+  ypos 1150
+  selected false
+ }
+push 0
+push $N4a4ddc00
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1152
+  selected false
+ }
+set N4a4dd800 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -113
+  ypos 1188
+  selected false
+ }
+push 0
+push $N4a4dd800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1190
+  selected false
+ }
+set N4a4dd400 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -108
+  ypos 1228
+  selected false
+ }
+push 0
+push $N4a4dd400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1228
+  selected false
+ }
+set N4a4dd000 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -127
+  ypos 1266
+  selected false
+ }
+push 0
+push $N4a4dd000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1266
+  selected false
+ }
+set N4a4dcc00 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -112
+  ypos 1306
+  selected false
+ }
+push 0
+push $N4a4dcc00
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1304
+  selected false
+ }
+set N4a4dc800 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -104
+  ypos 1338
+  selected false
+ }
+push 0
+push $N4a4dc800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1342
+  selected false
+ }
+set N4a4dc400 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -96
+  ypos 1380
+  selected false
+ }
+push 0
+push $N4a4dc400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1380
+  selected false
+ }
+set N4a4dc000 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -97
+  ypos 1420
+  selected false
+ }
+push 0
+push $N4a4dc000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1418
+  selected false
+ }
+set N42a13c00 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -110
+  ypos 1453
+  selected false
+ }
+push 0
+push $N42a13c00
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1456
+  selected false
+ }
+set N42a13800 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -97
+  ypos 1497
+  selected false
+ }
+push 0
+push $N42a13800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1494
+  selected false
+ }
+set N42a13400 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -92
+  ypos 1530
+  selected false
+ }
+push 0
+push $N42a13400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1532
+  selected false
+ }
+set N42a13000 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -69
+  ypos 1569
+  selected false
+ }
+push 0
+push $N42a13000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1570
+  selected false
+ }
+set N42a12c00 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -146
+  ypos 1602
+  selected false
+ }
+push 0
+push $N42a12c00
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1608
+  selected false
+ }
+set N42a12800 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -159
+  ypos 1643
+  selected false
+ }
+push 0
+push $N42a12800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1646
+  selected false
+ }
+set N42a12400 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -135
+  ypos 1686
+  selected false
+ }
+push 0
+push $N42a12400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1684
+  selected false
+ }
+set N42a12000 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -145
+  ypos 1734
+  selected false
+ }
+push 0
+push $N42a12000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1722
+  selected false
+ }
+set Nbbee1c00 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -151
+  ypos 1767
+  selected false
+ }
+push 0
+push $Nbbee1c00
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1760
+  selected false
+ }
+set Nbbee1800 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -140
+  ypos 1800
+  selected false
+ }
+push 0
+push $Nbbee1800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1798
+  selected false
+ }
+set Nbbee1400 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -163
+  ypos 1836
+  selected false
+ }
+push 0
+push $Nbbee1400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1836
+  selected false
+ }
+set Nbbee1000 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -145
+  ypos 1880
+  selected false
+ }
+push 0
+push $Nbbee1000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1874
+  selected false
+ }
+set Nbbee0c00 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -132
+  ypos 1913
+  selected false
+ }
+push 0
+push $Nbbee0c00
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1912
+  selected false
+ }
+set Nbbee0800 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -146
+  ypos 1949
+  selected false
+ }
+push 0
+push $Nbbee0800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1950
+  selected false
+ }
+set Nbbee0400 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -172
+  ypos 1983
+  selected false
+ }
+push 0
+push $Nbbee0400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 1988
+  selected false
+ }
+set Nbbee0000 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -165
+  ypos 2021
+  selected false
+ }
+push 0
+push $Nbbee0000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2026
+  selected false
+ }
+set N4267fc00 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -175
+  ypos 2062
+  selected false
+ }
+push 0
+push $N4267fc00
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2064
+  selected false
+ }
+set N4267f800 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -170
+  ypos 2103
+  selected false
+ }
+push 0
+push $N4267f800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2102
+  selected false
+ }
+set N4267f400 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -158
+  ypos 2142
+  selected false
+ }
+push 0
+push $N4267f400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2140
+  selected false
+ }
+set N4267f000 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -142
+  ypos 2180
+  selected false
+ }
+push 0
+push $N4267f000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2178
+  selected false
+ }
+set N4267ec00 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -143
+  ypos 2216
+  selected false
+ }
+push 0
+push $N4267ec00
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2216
+  selected false
+ }
+set N4267e800 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -138
+  ypos 2258
+  selected false
+ }
+push 0
+push $N4267e800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2254
+  selected false
+ }
+set N4267e400 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -155
+  ypos 2299
+  selected false
+ }
+push 0
+push $N4267e400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2292
+  selected false
+ }
+set N4267e000 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -162
+  ypos 2336
+  selected false
+ }
+push 0
+push $N4267e000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2330
+  selected false
+ }
+set N59307c00 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -143
+  ypos 2370
+  selected false
+ }
+push 0
+push $N59307c00
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2368
+  selected false
+ }
+set N59307800 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -121
+  ypos 2412
+  selected false
+ }
+push 0
+push $N59307800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2406
+  selected false
+ }
+set N59307400 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -142
+  ypos 2448
+  selected false
+ }
+push 0
+push $N59307400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2444
+  selected false
+ }
+set N59307000 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -148
+  ypos 2484
+  selected false
+ }
+push 0
+push $N59307000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2482
+  selected false
+ }
+set N59306c00 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -140
+  ypos 2523
+  selected false
+ }
+push 0
+push $N59306c00
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2520
+  selected false
+ }
+set N59306800 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -160
+  ypos 2558
+  selected false
+ }
+push 0
+push $N59306800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2558
+  selected false
+ }
+set N59306400 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -142
+  ypos 2603
+  selected false
+ }
+push 0
+push $N59306400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2596
+  selected false
+ }
+set N59306000 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -136
+  ypos 2641
+  selected false
+ }
+push 0
+push $N59306000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2634
+  selected false
+ }
+set Nab88bc00 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -125
+  ypos 2675
+  selected false
+ }
+push 0
+push $Nab88bc00
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2672
+  selected false
+ }
+set Nab88b800 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -106
+  ypos 2709
+  selected false
+ }
+push 0
+push $Nab88b800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2710
+  selected false
+ }
+set Nab88b400 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -96
+  ypos 2749
+  selected false
+ }
+push 0
+push $Nab88b400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2748
+  selected false
+ }
+set Nab88b000 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -91
+  ypos 2790
+  selected false
+ }
+push 0
+push $Nab88b000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2786
+  selected false
+ }
+set Nab88ac00 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -131
+  ypos 2820
+  selected false
+ }
+push 0
+push $Nab88ac00
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2824
+  selected false
+ }
+set Nab88a800 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -130
+  ypos 2858
+  selected false
+ }
+push 0
+push $Nab88a800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2862
+  selected false
+ }
+set Nab88a400 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -96
+  ypos 2898
+  selected false
+ }
+push 0
+push $Nab88a400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2900
+  selected false
+ }
+set Nab88a000 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -106
+  ypos 2938
+  selected false
+ }
+push 0
+push $Nab88a000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2938
+  selected false
+ }
+set N53381c00 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -63
+  ypos 2976
+  selected false
+ }
+push 0
+push $N53381c00
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 2976
+  selected false
+ }
+set N53381800 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -120
+  ypos 3012
+  selected false
+ }
+push 0
+push $N53381800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 3014
+  selected false
+ }
+set N53381400 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -112
+  ypos 3052
+  selected false
+ }
+push 0
+push $N53381400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 3052
+  selected false
+ }
+set N53381000 [stack 0]
+clone $C12e99200 {
+  inputs 2
+  xpos -120
+  ypos 3089
+  selected false
+ }
+push 0
+push $N53381000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 3090
+  selected false
+ }
+set N53380c00 [stack 0]
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch92
+  xpos 513
+  ypos 3090
+ }
+push $N55c80400
+push $N53380c00
+clone $C12e99200 {
+  inputs 2
+  xpos -150
+  ypos 3123
+  selected false
+ }
+push 0
+push $N53380c00
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 3128
+  selected false
+ }
+set N53380800 [stack 0]
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch93
+  xpos 513
+  ypos 3128
+ }
+push $N55c80400
+push $N53380800
+clone $C12e99200 {
+  inputs 2
+  xpos -129
+  ypos 3166
+  selected false
+ }
+push 0
+push $N53380800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 3166
+  selected false
+ }
+set N53380400 [stack 0]
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch94
+  xpos 513
+  ypos 3166
+ }
+push $N55c80400
+push $N53380400
+clone $C12e99200 {
+  inputs 2
+  xpos -109
+  ypos 3196
+  selected false
+ }
+push 0
+push $N53380400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 3204
+  selected false
+ }
+set N53380000 [stack 0]
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch95
+  xpos 513
+  ypos 3204
+ }
+push $N55c80400
+push $N53380000
+clone $C12e99200 {
+  inputs 2
+  xpos -112
+  ypos 3239
+  selected false
+ }
+push 0
+push $N53380000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 3242
+  selected false
+ }
+set N592f7c00 [stack 0]
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch96
+  xpos 513
+  ypos 3242
+ }
+push $N55c80400
+push $N592f7c00
+clone $C12e99200 {
+  inputs 2
+  xpos -122
+  ypos 3275
+  selected false
+ }
+push 0
+push $N592f7c00
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 3280
+  selected false
+ }
+set N592f7800 [stack 0]
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch97
+  xpos 513
+  ypos 3280
+ }
+push $N55c80400
+push $N592f7800
+clone $C12e99200 {
+  inputs 2
+  xpos -122
+  ypos 3314
+  selected false
+ }
+push 0
+push $N592f7800
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 3318
+  selected false
+ }
+set N592f7400 [stack 0]
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch98
+  xpos 513
+  ypos 3318
+ }
+push $N55c80400
+push $N592f7400
+clone $C12e99200 {
+  inputs 2
+  xpos -134
+  ypos 3351
+  selected false
+ }
+push 0
+push $N592f7400
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 3356
+  selected false
+ }
+set N592f7000 [stack 0]
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch99
+  xpos 513
+  ypos 3356
+ }
+push $N55c80400
+push $N592f7000
+clone $C12e99200 {
+  inputs 2
+  xpos -112
+  ypos 3389
+  selected false
+ }
+push 0
+push $N592f7000
+clone $C469ab800 {
+  inputs 3
+  xpos 80
+  ypos 3394
+  selected false
+ }
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch100
+  xpos 513
+  ypos 3394
+ }
+push $Nab88b000
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch83
+  xpos 513
+  ypos 2748
+ }
+push $Nab88ac00
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch84
+  xpos 513
+  ypos 2786
+ }
+push $Nab88a800
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch85
+  xpos 513
+  ypos 2824
+ }
+push $Nab88a400
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch86
+  xpos 513
+  ypos 2862
+ }
+push $Nab88a000
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch87
+  xpos 513
+  ypos 2900
+ }
+push $N53381c00
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch88
+  xpos 513
+  ypos 2938
+ }
+push $N53381800
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch89
+  xpos 513
+  ypos 2976
+ }
+push $N53381400
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch90
+  xpos 513
+  ypos 3014
+ }
+push $N53381000
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch91
+  xpos 513
+  ypos 3052
+ }
+push $N59307c00
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch72
+  xpos 513
+  ypos 2330
+ }
+push $N59307800
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch73
+  xpos 513
+  ypos 2368
+ }
+push $N59307400
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch74
+  xpos 513
+  ypos 2406
+ }
+push $N59307000
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch75
+  xpos 513
+  ypos 2444
+ }
+push $N59306c00
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch76
+  xpos 513
+  ypos 2482
+ }
+push $N59306800
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch77
+  xpos 513
+  ypos 2520
+ }
+push $N59306400
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch78
+  xpos 513
+  ypos 2558
+ }
+push $N59306000
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch79
+  xpos 513
+  ypos 2596
+ }
+push $Nab88bc00
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch80
+  xpos 513
+  ypos 2634
+ }
+push $Nab88b800
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch81
+  xpos 513
+  ypos 2672
+ }
+push $Nab88b400
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch82
+  xpos 513
+  ypos 2710
+ }
+push $Nbbee0800
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch61
+  xpos 513
+  ypos 1912
+ }
+push $Nbbee0400
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch62
+  xpos 513
+  ypos 1950
+ }
+push $Nbbee0000
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch63
+  xpos 513
+  ypos 1988
+ }
+push $N4267fc00
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch64
+  xpos 513
+  ypos 2026
+ }
+push $N4267f800
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch65
+  xpos 513
+  ypos 2064
+ }
+push $N4267f400
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch66
+  xpos 513
+  ypos 2102
+ }
+push $N4267f000
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch67
+  xpos 513
+  ypos 2140
+ }
+push $N4267ec00
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch68
+  xpos 513
+  ypos 2178
+ }
+push $N4267e800
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch69
+  xpos 513
+  ypos 2216
+ }
+push $N4267e400
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch70
+  xpos 513
+  ypos 2254
+ }
+push $N4267e000
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch71
+  xpos 513
+  ypos 2292
+ }
+push $N4a4dd400
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch42
+  xpos 513
+  ypos 1190
+ }
+push $N4a4dd000
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch43
+  xpos 513
+  ypos 1228
+ }
+push $N4a4dcc00
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch44
+  xpos 513
+  ypos 1266
+ }
+push $N4a4dc800
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch45
+  xpos 513
+  ypos 1304
+ }
+push $N4a4dc400
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch46
+  xpos 513
+  ypos 1342
+ }
+push $N4a4dc000
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch47
+  xpos 513
+  ypos 1380
+ }
+push $N42a13c00
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch48
+  xpos 513
+  ypos 1418
+ }
+push $N42a13800
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch49
+  xpos 513
+  ypos 1456
+ }
+push $N42a13400
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch50
+  xpos 513
+  ypos 1494
+ }
+push $N42a13000
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch51
+  xpos 513
+  ypos 1532
+ }
+push $N42a12c00
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch52
+  xpos 513
+  ypos 1570
+ }
+push $N42a12800
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch53
+  xpos 513
+  ypos 1608
+ }
+push $N42a12400
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch54
+  xpos 513
+  ypos 1646
+ }
+push $Nbbee1c00
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch56
+  xpos 513
+  ypos 1722
+ }
+push $Nbbee1800
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch57
+  xpos 513
+  ypos 1760
+ }
+push $Nbbee1400
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch58
+  xpos 513
+  ypos 1798
+ }
+push $Nbbee1000
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch59
+  xpos 513
+  ypos 1836
+ }
+push $Nbbee0c00
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch60
+  xpos 513
+  ypos 1874
+ }
+push $N42a12000
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch55
+  xpos 513
+  ypos 1684
+ }
+push $N4eaa6000
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch23
+  xpos 513
+  ypos 468
+ }
+push $Nba81bc00
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch24
+  xpos 513
+  ypos 506
+ }
+push $Nba81b400
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch26
+  xpos 513
+  ypos 582
+ }
+push $Nba81b000
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch27
+  xpos 513
+  ypos 620
+ }
+push $Nba81ac00
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch28
+  xpos 513
+  ypos 658
+ }
+push $Nba81a800
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch29
+  xpos 513
+  ypos 696
+ }
+push $Nba81a400
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch30
+  xpos 513
+  ypos 734
+ }
+push $Nba81a000
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch31
+  xpos 513
+  ypos 772
+ }
+push $N82ca7c00
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch32
+  xpos 513
+  ypos 810
+ }
+push $N82ca7800
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch33
+  xpos 513
+  ypos 848
+ }
+push $N82ca7400
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch34
+  xpos 513
+  ypos 886
+ }
+push $N82ca7000
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch35
+  xpos 513
+  ypos 924
+ }
+push $N82ca6c00
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch36
+  xpos 513
+  ypos 962
+ }
+push $N82ca6400
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch38
+  xpos 513
+  ypos 1038
+ }
+push $N82ca6000
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch39
+  xpos 513
+  ypos 1076
+ }
+push $N4a4ddc00
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch40
+  xpos 513
+  ypos 1114
+ }
+push $N4a4dd800
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch41
+  xpos 513
+  ypos 1152
+ }
+push $Nba81b800
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch25
+  xpos 513
+  ypos 544
+ }
+push $N82ca6800
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch37
+  xpos 513
+  ypos 1000
+ }
+push $Ncd937c00
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch8
+  xpos 513
+  ypos -102
+ }
+push $Ncd937800
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch9
+  xpos 513
+  ypos -64
+ }
+push $Ncd937400
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch10
+  xpos 513
+  ypos -26
+ }
+push $Ncd936c00
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch12
+  xpos 513
+  ypos 50
+ }
+push $Ncd936800
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch13
+  xpos 513
+  ypos 88
+ }
+push $Ncd936400
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch14
+  xpos 513
+  ypos 126
+ }
+push $Ncd936000
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch15
+  xpos 513
+  ypos 164
+ }
+push $N4eaa7c00
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch16
+  xpos 513
+  ypos 202
+ }
+push $N4eaa7800
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch17
+  xpos 513
+  ypos 240
+ }
+push $N4eaa7400
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch18
+  xpos 513
+  ypos 278
+ }
+push $N4eaa7000
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch19
+  xpos 513
+  ypos 316
+ }
+push $N4eaa6c00
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch20
+  xpos 513
+  ypos 354
+ }
+push $N4eaa6800
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch21
+  xpos 513
+  ypos 392
+ }
+push $N4eaa6400
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch22
+  xpos 513
+  ypos 430
+ }
+push $Ncd937000
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch11
+  xpos 513
+  ypos 12
+ }
+push $N469ab000
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch3
+  xpos 507
+  ypos -290
+ }
+push $N469aa400
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch6
+  xpos 513
+  ypos -178
+ }
+push $N469aa000
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch7
+  xpos 513
+  ypos -140
+ }
+push $N469ab400
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch2
+  selected true
+  xpos 507
+  ypos -328
+ }
+push $N469aa800
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch5
+  xpos 510
+  ypos -213
+ }
+push $N469aac00
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch4
+  xpos 507
+  ypos -252
+ }
+push $N469ab800
+ Switch {
+  which {{"iterations >= \[string range \[value name] 6 end]?0:1"}}
+  name Switch1
+  xpos 503
+  ypos -373
+ }
+push $N469abc00
+ Dot {
+  name Dot1
+  tile_color 0xc0c0c000
+  xpos 585
+  ypos -423
+ }
+ Scene {
+  inputs 101
+  name Scene1
+  xpos 752
+  ypos -250
+ }
+ Output {
+  name Output1
+  xpos 1435
+  ypos -230
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote1
+  label "CopyGeo by Charles Savoie (chuckies@d2.com)\nSupports a maximum of 100 iterations.\nThis group is pretty ugly, but fun..."
+  note_font_size 70
+  xpos -497
+  ypos -801
+ }
+end_group
