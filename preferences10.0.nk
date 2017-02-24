@@ -1,7 +1,8 @@
 Preferences {
  inputs 0
  name Preferences
- LocalizationSizeLimit 100
+ localCachePath E:/nuke_locallize/
+ LocalizationSizeLimit 400
  diskCacheGB 20
  selectedGPUDeviceName "Quadro K4000"
  platformPathRemaps ""
