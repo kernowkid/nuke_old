@@ -23,6 +23,8 @@ def createWriteDir():
 nuke.addBeforeRender(createWriteDir)
 
 
+
+# auto write path and dir
 def createWritePath():
     import nuke
     import eye
