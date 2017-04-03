@@ -7,6 +7,10 @@ nuke.pluginAddPath('./python')
 nuke.pluginAddPath('./gizmos')
 nuke.pluginAddPath('./icons')
 
+# add arri viewer LUT process to viewer LUT dropdown
+nuke.ViewerProcess.register("Vax", nuke.Node, ("VaxVP","")) 
+
+
 
 ## create autowrite directories 
 def createWriteDir():
