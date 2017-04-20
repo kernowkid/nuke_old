@@ -1,8 +1,13 @@
 ## init.py
 ## loaded by nuke before menu.py
 
-# to add a folder inside the '.nuke' folder -> nuke.pluginAddPath('./myFolder')
+import nuke
 
+if not nuke.GUI:
+    nuke.tprint('hello')
+
+
+# to add a folder inside the '.nuke' folder -> nuke.pluginAddPath('./myFolder')
 nuke.pluginAddPath('./python')
 nuke.pluginAddPath('./gizmos')
 nuke.pluginAddPath('./icons')
@@ -77,3 +82,9 @@ def createWritePath():
     
 
 nuke.addKnobChanged(createWritePath, nodeClass = 'Write')
+
+
+
+
+
+
